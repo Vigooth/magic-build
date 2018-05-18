@@ -39,8 +39,20 @@ exports.updateMyCards = function(req, res, next) {
       console.log("saving new")
       card.save()
     }else {
-      result.myCards = { ...result.myCards, ...req.body.myCards};
+      //{code: HOU, multiverseId:43500}}
+/*      if(result.cards[req.body.code][req.body.multiverseid]){
+        result.cards[req.body.code][req.body.multiverseid] = {}.number
+      }*/
+      //result.myCards[req.body.code][""+req.body.card.multiverseid].number =req.body.card.number;
+      var a = {[req.body.code]:{...result.myCards[req.body.code],[""+req.body.card.multiverseid]:req.body.card}}
+      console.log({...a})
+      //result.myCards.number =45;
+      //result.myCards[req.body.code][req.body.card.multiverseid] =req.body.card;
+      result.myCards =  { ...result.myCards, [req.body.code]:{...result.myCards[req.body.code],[req.body.card.multiverseid]:req.body.card}};
+      //Card.update({userId:_id},{$set:{"myCards.HIX": [55,66]}})
+      console.log(result.myCards[req.body.code])
       result.save(function(err, updatedCard){
+        console.log(result)
         res.send(updatedCard)
       });
       console.log(_id)

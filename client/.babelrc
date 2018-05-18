@@ -1,0 +1,17 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions"]
+        },
+        "debug": true
+      }
+    ],
+    "react",
+    "es2015",
+    "stage-1"
+  ],
+  "plugins": ["transform-runtime"]
+}
