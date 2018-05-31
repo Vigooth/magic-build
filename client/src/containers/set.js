@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import  { fetchSet } from '../actions/index';
-import _ from 'lodash';
-
 import PropTypes from 'prop-types'
 import Cards from "./cards";
 import { Filters } from "../components/Filters";
@@ -60,7 +58,7 @@ class Set extends Component {
           <Reverser />
         </div>
         <div className="filterScroll"/>
-        <Cards {...this.props} set={set} />
+        <Cards set={set} />
       </div>
     )
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import _ from 'lodash';
-import { symbolColor } from "../components/constantes";
+import { symbolColor } from "./constantes";
 
 class CardDetails extends Component {
   state = {

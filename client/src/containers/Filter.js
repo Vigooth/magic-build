@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { ButtonGroup } from 'reactstrap';
 import { setVisibilityFilter } from "../actions/index";
 import { FilterColorsBtn, FilterOwnBtn, FilterSearchBtn }  from '../components/custom/filters'
 
 class Filter extends Component {
+  static propTypes = {
+    type: PropTypes.string.isRequired,
+    defaultValue: PropTypes.arrayOf(PropTypes.string),
+    setVisibilityFilter: PropTypes.func.isRequired,
+  };
 
   state = {
     colorSelected: this.props.defaultValue || []

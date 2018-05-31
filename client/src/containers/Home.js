@@ -10,7 +10,7 @@ class Home extends Component {
     this.props.fetchSets()
   }
 
-  render(){
+  render() {
     const { sets } = this.props;
     return (
       <div className="home">

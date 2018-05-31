@@ -7,11 +7,11 @@ import Signup from '../components/auth/signup';
 
 class Login extends Component {
   state = {
-    "signin": true
+    signin: true
   };
 
   toggleSignin = () => {
-    this.setState({ signin:!this.state.signin })
+    this.setState({ signin: !this.state.signin })
   };
 
   renderAuth(){
@@ -22,7 +22,7 @@ class Login extends Component {
     return (
       <div className="login">
         {this.renderAuth()}
-        <button onClick={this.toggleSignin} className={`btn btn-primary`}>{this.state.signin?'No account ? Click here':'Already registred ? Click here'}</button>
+        <button onClick={this.toggleSignin} className={`btn btn-primary`}>{this.state.signin ? 'No account ? Click here': 'Already registred ? Click here'}</button>
       </div>
     )
   }
@@ -30,4 +30,4 @@ class Login extends Component {
 
 export default reduxForm({
   form: 'login',
-})(connect(null, {signinUser} )(Login));
+})(connect(null, { signinUser } )(Login));

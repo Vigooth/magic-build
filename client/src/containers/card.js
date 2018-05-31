@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import CardDetails from "./cardDetails";
+import CardDetails from "../components/CardDetails";
 import { IconPlus, IconMinus } from "../components/custom/icons/icons";
 import { cardScyfallImage } from "../components/constantes";
 import { fetchMyCards, updateMyCards } from "../actions/cards";
-
-
 
 const findCardInSet = ( cards, multiverseid ) => {
   return _.find(cards, { multiverseid })
@@ -27,16 +25,16 @@ class Card extends Component {
     this.setState({ imageLoaded: true });
   };
 
-  render(){
+  render() {
     const
-      preload = this.state.imageLoaded ? '' : 'image-preload',
-      visibility = this.state.imageLoaded ? 'visible' : 'hidden',
-      { cards : { owned }, set, multiverseid, updateMyCards  } = this.props,
-      card                                                     = set.cards[multiverseid],
-      cardOwned                                                = owned.byMultiverseid[multiverseid] || {},
-      addCssIfCardIsOwned                                      = cardOwned.number ? 'owned' : '';
+      preload                                                 = this.state.imageLoaded ? '' : 'image-preload',
+      visibility                                              = this.state.imageLoaded ? 'visible' : 'hidden',
+      { cards : { owned }, set, multiverseid, updateMyCards } = this.props,
+      card                                                    = set.cards[multiverseid],
+      cardOwned                                               = owned.byMultiverseid[multiverseid] || {},
+      addCssIfCardIsOwned                                     = cardOwned.number ? 'owned' : '';
 
-    return(
+    return (
       <div className={`cardBox ${preload}`}>
         <img  className={`placeholder ${addCssIfCardIsOwned} ${preload}`} style={{visibility}} onLoad={this.onImageLoaded} src={ cardScyfallImage(card.number, set.magicCardsInfoCode, 'en', 'normal' )} />
         <div className="cardActions">

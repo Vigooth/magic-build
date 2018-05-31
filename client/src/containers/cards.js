@@ -10,20 +10,16 @@ class Cards extends Component {
   static propTypes = {
     set: PropTypes.object.isRequired,
     cards: PropTypes.object.isRequired,
-    fetchMyCards: PropTypes.func.isRequired,
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        set: PropTypes.string,
-      }).isRequired,
-    }).isRequired
+    fetchMyCards: PropTypes.func.isRequired
   };
+
   componentWillMount() {
-    const { fetchMyCards, match: { params } } = this.props;
-    fetchMyCards(params.set);
+    const { fetchMyCards, set: { code } } = this.props;
+    fetchMyCards(code);
   };
 
   getCards = ( { cards, visibleCards } ) => (
-    _.map(visibleCards, card => <Card key={card}  {...this.props} multiverseid={cards[card].multiverseid} />)
+    _.map(visibleCards, card => <Card key={card} cards={this.props.cards} set={this.props.set} multiverseid={cards[card].multiverseid} />)
     );
 
   setOrCardsIsNotReady = (set, cards) => (
@@ -31,6 +27,7 @@ class Cards extends Component {
   );
 
   render() {
+    console.log(this.props)
     const { set, cards } = this.props;
     if ( this.setOrCardsIsNotReady(set, cards) ) return <div>Loading...</div>;
 
