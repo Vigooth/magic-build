@@ -1,5 +1,4 @@
 import axios from 'axios';
-//import  { browserHistory} from 'react-router';
 import { AUTH_USER, AUTH_ERROR, UNAUTH_USER} from './types'
 const ROOT_URL = 'http://localhost:3090';
 
@@ -39,7 +38,7 @@ export function signupUser({ email, password }) {
         // - Update state to indicate user is authenticated
         dispatch({
           type: AUTH_USER
-        })
+        });
         localStorage.setItem('token', response.data.token);
         //browserHistory.push('/feature')
       })

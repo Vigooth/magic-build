@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { connect } from 'react-redux';
 
-import { Switch, Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import  { browserHistory} from 'react-router';
-import Home from '../Home'
+import Home from '../../containers/Home'
 const UnauthorizedRoute = () => browserHistory.push('/feature');
  const Public = ({authenticated, component,path, exact, ...rest })=>{
   return (
@@ -16,10 +16,10 @@ const UnauthorizedRoute = () => browserHistory.push('/feature');
       }))
       }/>
   )
-}
+};
 const mapStateToProps = state => (
   {
     authenticated: state.auth.authenticated
   }
-)
+);
 export default  connect(mapStateToProps, null)(Public);

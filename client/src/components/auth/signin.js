@@ -4,16 +4,11 @@ import { connect } from 'react-redux';
 import  { signinUser } from '../../actions/auth'
 class Signin extends Component {
   handleFormSubmit({ email, password }) {
-    console.log("submitted");
-    console.log(email, password);
-    console.log("props",this.props)
-
     this.props.signinUser({ email, password });
   }
 
   render() {
     const { handleSubmit } = this.props;
-    console.log("props",this.props)
     return  (<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
       <fieldset className="form-group">
         <label>Email:</label>

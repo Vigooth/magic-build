@@ -1,11 +1,6 @@
 require("babel-runtime/regenerator");
 require("babel-register");
 require("webpack-hot-middleware/client?reload=true");
-require("./main.css");
+require("./main.scss");
 require("./index.html");
 require("./index");
-
-let a = () => {
-  console.log("csc")
-}
-a("ccs")

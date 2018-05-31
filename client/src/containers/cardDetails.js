@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import _ from 'lodash';
+import { symbolColor } from "../components/constantes";
+
 class CardDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modal: false
-    };
+  state = {
+    modal: false
+  };
 
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.setState({
-      modal: !this.state.modal
-    });
-  }
+  toggle = () => {
+    this.setState({ modal: !this.state.modal });
+  };
 
   render() {
-    const { card, set } = this.props
-    const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px' }} onClick={this.toggle}>&times;</button>;
+    const
+      { card, set } = this.props,
+      externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px' }} onClick={this.toggle}>&times;</button>;
+
     return (
       <div>
         <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
@@ -35,7 +32,6 @@ class CardDetails extends Component {
             Rarity: {card.rarity}<br />
             Card number: {card.number}<br />
             Artist: {card.artist}
-
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
@@ -46,13 +42,9 @@ class CardDetails extends Component {
     );
   }
 }
-const ColorImg = ({name, size = 'medium',type = 'symbol' }) => (
-  <img  src={`http://gatherer.wizards.com/handlers/Image.ashx?size=${size}&name=${name}&type=${type}`} />
-)
 const ManaCostSymbol = ({ manaCost }) => {
-  const convertStringToArray=_.flow([_.startCase, _.words])
-  //console.log(convertStringToArray("rr, bb, cc"))
-  return _.map(convertStringToArray(manaCost), (item, index) =><ColorImg key={index} name={item} />);
+  const convertStringToArray=_.flow([_.startCase, _.words]);
+  return _.map(convertStringToArray(manaCost), (item, index) =><img src={symbolColor(item, 'medium')} key={index} name={item} />);
 };
-const FlavorText = ({flavor}) => <i>{flavor}</i>
+const FlavorText = ({flavor}) => <i>{flavor}</i>;
 export default CardDetails;

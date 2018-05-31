@@ -1,8 +1,8 @@
-const visibilityFilter = (state = {}, action) => {
-  console.log(action.type)
-  switch (action.type) {
-    case 'SET_VISIBILITY_FILTER':
+import { SET_VISIBILITY_FILTER } from "../actions/types";
 
+const visibilityFilter = (state = {}, action) => {
+  switch (action.type) {
+    case SET_VISIBILITY_FILTER:
       return action.filter;
     default:
       return state

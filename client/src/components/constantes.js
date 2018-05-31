@@ -4,10 +4,14 @@ import axios from 'axios';
 const colorsIdentity = ["B", "U", "R", "W", "G"];
 
 const symbolColor = (colorIdentity, size) => `http://gatherer.wizards.com/handlers/Image.ashx?size=${size}&name=${colorIdentity}&type=symbol`;
-const cardImage = (multiverseid) => `http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=${multiverseid}&type=card`;
 
+const cardScyfallImage = (number, edition, language, size) => `https://img.scryfall.com/cards/${size}/${language}/${edition}/${number}.jpg`;
+
+const getAllSets =  () => {
+  return  axios.get(`https://mtgjson.com/json/AllSets.json`)
+};
 const getSetFromEdition =  edition => {
   return  axios.get(`https://mtgjson.com/json/${edition}-x.json`)
 };
 
-export { colorsIdentity, symbolColor, cardImage, getSetFromEdition  }
+export { colorsIdentity, symbolColor, getSetFromEdition, getAllSets, cardScyfallImage }

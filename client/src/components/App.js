@@ -1,20 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from './Header';
+import { Footer } from './Footer';
 import Routes from './Routes';
 
 const App = () => {
-  //console.log("App", authenticated)
   return (
     <div className='wrapper'>
       <Header/>
       <Routes />
+      <Footer/>
     </div>
 
   );
 };
-const mapStateToProps = state => (
-  {
-    authenticated: state.auth.authenticated
-  }
-);
+
 export default (App);

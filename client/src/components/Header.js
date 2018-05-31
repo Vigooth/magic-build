@@ -1,42 +1,46 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { IconUser } from "./custom/icons/icons";
+import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
 
 class Header extends Component {
-  renderLinks() {
-    if ( this.props.authenticated ) {
-      // show a link to sign out
-      return <li className="nav-item">
-        <Link className="nav-item" to="/signout">Sign out </Link>
-      </li>
-    } else {
-      return [
-        <li className="nav-item" key={1}>
-          <Link className="nav-item" to="/signin">Sign In </Link>
-        </li>,
-        <li className="nav-item"  key={2}>
-          <Link className="nav-item" to="/signup">Sign Up </Link>
-        </li>
+  state = {
+    isOpen: false
+  };
 
-      ]
-    }
-
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
   }
+
   render() {
     return (
-      <nav className="navbar navbar-light">
-        <center><Link className="navbar-brand title" to="/">MANACARD </Link></center>
-
-        <ul className="nav navbar-nav">
-          {this.renderLinks()}
-        </ul>
-      </nav>
+      <header className="navbar">
+        <nav className="nav-item">
+          <div className="header-board-buttons">
+            <IconUser size="32px"/>
+          </div>
+          <div className="header-title">
+            <Link className="title" to="/">MANACARD </Link>
+          </div>
+          <div className="header-user">
+            <UncontrolledDropdown nav inNavbar isOpen={this.state.isOpen} toggle={this.toggle}>
+              <DropdownToggle nav>
+                <IconUser size="32px"/>
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem header>Header</DropdownItem>
+                <DropdownItem><Link  to="/settings?tab=account">Profile </Link></DropdownItem>
+                <DropdownItem><Link  to="/settings">Settings </Link></DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>Log out</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </div>
+        </nav>
+      </header>
     )
   }
 }
-const mapStateToProps = state => (
-  {
-    authenticated: state.auth.authenticated
-  }
-)
-export default connect(mapStateToProps, null)(Header);
+export default (Header);

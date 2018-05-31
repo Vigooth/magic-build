@@ -1,8 +1,17 @@
-import { FETCH_SET } from './types';
-import { getSetFromEdition } from "../components/constantes";
-import { filterByColor, filterBySearch, filterByOwn } from "../components/custom/filters/test";
+import { FETCH_SET, FETCH_SETS, SET_REVERSER, SET_SORTER, SET_VISIBILITY_FILTER } from './types';
+import { getAllSets, getSetFromEdition } from "../components/constantes";
+import { filterByColor, filterBySearch, filterByOwn } from "../components/custom/filters/index";
 import _  from 'lodash';
 
+export function fetchSets() {
+  return  async (dispatch) => {
+    const sets = await getAllSets();
+      dispatch({
+        type: FETCH_SETS,
+        payload: sets
+      })
+  }
+}
 export function fetchSet(edition) {
   return  async (dispatch, getState) => {
     const
@@ -18,28 +27,36 @@ export function fetchSet(edition) {
   }
 }
 export const setOrder = (sorter) => {
-  console.log(sorter)
   return(dispatch) => {
-    console.log(dispatch)
     dispatch({
-      type: 'SET_SORTER',
+      type: SET_SORTER,
       sorter
     })
   }
-}
-
+};
+export const setReverser = (reverser) => {
+  return(dispatch) => {
+    dispatch({
+      type: SET_REVERSER,
+      payload: !!reverser
+    })
+  }
+};
 export const setVisibilityFilter = (filter) =>  {
   return (dispatch, getState) => {
     const { visibilityFilter } = getState();
 
     dispatch({
-      type: 'SET_VISIBILITY_FILTER',
+      type: SET_VISIBILITY_FILTER,
       filter: { ...visibilityFilter, ...filter,}
     })
   }
 };
+const mapByMultiverseid = (collection) => _.map(collection, object => object["multiverseid"]);
 
-export const filterSet = ({ set, visibilityFilter, cards, sorter }) => {
+export const filterSet = ({ set, visibilityFilter, cards, sorter, reverser }) => {
+  const reverseIfNeeded  = (arr) => reverser ? _.reverse(arr) : arr;
+  const visibleCards = _.flow(_.sortBy, mapByMultiverseid, reverseIfNeeded);
   let cardsFiltred = set.cards;
 
   const FiltersNames = _.keys(visibilityFilter);
@@ -52,9 +69,7 @@ export const filterSet = ({ set, visibilityFilter, cards, sorter }) => {
       case 'search' : cardsFiltred = filterBySearch(cardsFiltred, filterCriteria) ;break;
     }
   });
-  let a= {};
-  console.log(_.forEach(_.sortBy(cardsFiltred, sorter), card => (a= {...a, [card.multiverseid]: card}) ))
-  console.log(a)
-  return {...set, cards:_.keyBy(_.sortBy(cardsFiltred, "artist"), "multiverseid")}
+
+  return {...set, cards:_.keyBy(cardsFiltred, "multiverseid"), visibleCards: visibleCards(cardsFiltred, sorter)}
 
 };

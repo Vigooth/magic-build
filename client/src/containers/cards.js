@@ -1,58 +1,58 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { fetchMyCards, addCard, decCard, updateMyCards } from '../actions/cards';
-import { Card } from './card';
+import { fetchMyCards } from '../actions/cards';
+import  Card  from './card';
+import LazyComponent from "../LazyComponent";
 
 class Cards extends Component {
-
+  static propTypes = {
+    set: PropTypes.object.isRequired,
+    cards: PropTypes.object.isRequired,
+    fetchMyCards: PropTypes.func.isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        set: PropTypes.string,
+      }).isRequired,
+    }).isRequired
+  };
   componentWillMount() {
     const { fetchMyCards, match: { params } } = this.props;
     fetchMyCards(params.set);
   };
 
-  getCards = ( { cards } ) => (
-    _.map(cards, card => <Card key={card.multiverseid}  props={this.props} {...card} />)
+  getCards = ( { cards, visibleCards } ) => (
+    _.map(visibleCards, card => <Card key={card}  {...this.props} multiverseid={cards[card].multiverseid} />)
     );
 
   setOrCardsIsNotReady = (set, cards) => (
     _.isEmpty(set) ||_.isEmpty(cards)
   );
 
-  render(){
+  render() {
     const { set, cards } = this.props;
-    console.log("cards", cards)
-    console.log("set", set)
     if ( this.setOrCardsIsNotReady(set, cards) ) return <div>Loading...</div>;
-    console.log("MULTIVERSEIDS,",cards.owned.multiverseids);
-    console.log("cardDisplayed", set.cards)
 
-
-    const getCardsOwned = _.flow([ filterByCardsOwned, _.size ]);
+    const numberOfcardsOwned = getCardsOwned(cards.owned.multiverseids,set.cards);
 
     return (
       <div className="cardsBox">
-        <h1 className="titleContainer">You have {getCardsOwned(cards.owned.multiverseids,set.cards) }/{_.size(set.cards)} cards</h1>
+        <h1 className="titleContainer">You have {numberOfcardsOwned }/{_.size(set.cards)} cards</h1>
         <div className="cardsContent">
-          {this.getCards(set)}
+          <LazyComponent>{this.getCards(set)}</LazyComponent>
         </div>
       </div>
     )
   }
 }
 const filterByCardsOwned = (array, collection) => {
-  console.log(collection);
-  console.log(_.every(array, _.isObject));
-  console.log(array);
-  console.log(_.compact(_.map(array, item => collection[item] )));
   return _.compact(_.map(array, item => collection[item] ));
 };
-const mapMultiverseid = (cards) => {
-  return _.map(cards, item => item.multiverseid)
-};
+const getCardsOwned = _.flow([ filterByCardsOwned, _.size ]);
+
 const mapStateToProps = state => (
   { cards: state.cards,
-    userId:state.auth.id
   }
 );
-export default connect(mapStateToProps, { fetchMyCards, addCard, decCard, updateMyCards })(Cards);
+export default connect(mapStateToProps, { fetchMyCards })(Cards);

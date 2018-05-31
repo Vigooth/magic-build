@@ -1,0 +1,308 @@
+$backgroundColor : #9e6d48;
+$majorGrey : #464a4c;
+$footerColor : #2a262c;
+$cardWidth :  244px;
+$cardHeight: 340px ;
+body {
+  background-color:$backgroundColor;
+}
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+header {
+  background-color: $majorGrey;
+  border-bottom: 2px black solid;
+  box-shadow: -1px 1px 2px black;
+  .title:hover {
+    color: rgba(252, 254, 255, 0.76);
+  }
+
+  .header-board-buttons {
+    display: flex;
+    flex-basis: 37%;
+  }
+  .header-title {
+    display: flex;
+    justify-content: center;
+    flex-basis: 26%;
+  }
+  .header-user {
+    display: flex;
+    justify-content:flex-end;
+    flex-basis: 37%;
+
+  }
+}
+.setByYear {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+}
+.page.container {
+  flex-grow: 1;
+}
+footer {
+  background-color: $footerColor;
+  margin-top: 50px;
+  border-top: 2px black solid;
+  box-shadow: -1px 1px 2px black;
+
+  .footer-copyright {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    p {color: #f5deb338; margin:0}
+  }
+
+}
+.header-title .title {
+  color: #eceeefb8;
+  font: 34px  bold;
+  text-shadow: 3px 2px 15px black;
+
+  text-decoration: none;
+}
+.nav-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;;
+}
+
+.titleContainer {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.set {
+  min-height:850px;
+
+  .select-filterMyCards {
+    border: 2px black solid;
+    color: black;
+    background-color: $majorGrey;
+    height:100%!important
+  }
+  .filter-order {
+    display: flex;
+    justify-content: space-between;
+  }
+  .sorter {
+    width: 100px;
+  }
+  .reverser {
+    width: 100px;
+  }
+  .active {height:45px}
+}
+.LimitVisibleCard {  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;}
+.cardsContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 2px black solid;
+  background-color: $majorGrey;
+  padding: 5px;
+  .image-preload {
+    border : 5px black solid;
+    width:100%;
+    height:100%
+  }
+  .cardBox.owned{
+    background-color: #9e6d48;
+    border-radius: 20%;
+
+  }
+  .cardBox {
+    position: relative;
+    width: $cardWidth;
+    height: $cardHeight;
+    margin: 9px;
+    background-color: #9e4848d6;
+    border-radius: 14%;
+    img {
+      opacity: 1;
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      transition: .5s ease;
+      backface-visibility: hidden;
+
+      .placeholder {
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+      }
+    }
+
+    .bottom .minus, .bottom .plus {
+      cursor:pointer;
+      display: flex;
+    }
+    .bottom .minus:hover, .bottom .plus:hover {
+    }
+    .cardActions {
+      transition: .5s ease;
+    }
+    .owned {
+      border-radius: 20%;
+    }
+  }
+  .cardActions {
+    .front {
+      position: absolute;
+      display: flex;
+      top: 0;
+      flex-direction: column;
+      width: 100%;
+      height: 107%;
+      .copiesNumber {
+        color: #e0c6d0;
+      }
+    }
+    .back {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+
+      display: flex;
+      top: 0;
+      flex-direction: column;
+      width: 100%;
+      height: 107%;
+
+      .copiesNumber {
+        color: #ec971f;
+      }
+
+    }
+    .top {
+      flex-basis : 18%;
+    }
+    .middle {
+      flex-basis : 64%;
+      text-align: center;
+    }
+
+    .bottom {
+      justify-content: center;
+      display: inline-flex;
+      flex-basis : 18%;
+    }
+    .copiesNumber {
+      display: inline-flex;
+      align-items: center;
+      text-align: center;
+    }
+    .copiesNumber span{
+      font: small-caps bold 26px sans-serif;
+      text-shadow: 1px 1px 0 #000000;
+      z-index: 2;
+    }
+  }
+}
+
+.setsBox {
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 10px;
+  border: 2px black solid;
+  background-color: $majorGrey;
+  span {
+    width: 100%;
+    border: 2px black solid;
+    color: #eceeefb8;
+    margin: 5px;
+    background-color: #353a3c;
+
+  }
+  span a{
+    color: #eceeefb8;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+
+  }
+  span a:hover {
+    width:100%;
+    border: 3px black solid;
+    color: #ec971f;
+    transition: .5s ease;
+
+  }
+}
+
+
+
+
+
+
+
+
+.cardBox:hover img {
+  opacity: 0.8;
+}
+
+.cardBox:hover .cardActions .back {
+  opacity: 1;
+  visibility: visible;
+
+}
+
+.text {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+.filtersGroup {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.fixed{
+  position:fixed;
+  top: 0;
+  width: 92%;
+  z-index: 2;
+}
+.filtersGroup {
+  .colors {}
+  .search{
+    flex-grow: 2;
+  }
+  .own {
+    flex-grow: 1;
+
+  }
+}
+.searchCardBar {
+  width: 100%;
+}
+.btn-filterColor {
+  border: 2px black solid;
+  background-color: $majorGrey;
+}
+.btn-filterColor:hover,.btn-filterColor.active:hover  {
+  background-color: #453d4c;
+  cursor: pointer;
+}
+.btn-filterColor.active {
+  background-color: #645a6b;
+
+}
+.loadMore {
+  cursor:pointer;
+  width: 100%;
+  border: 2px black solid;
+  background-color: #464a4c;
+
+}
