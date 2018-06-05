@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import LazyComponent from "../LazyComponent";
+import LazyComponent from "../lazyComponent/LazyComponent";
 import { fetchSets } from "../actions/index";
 import { connect } from "react-redux";
-import { RenderSetsByReleaseDate } from "../components/SetListByReleaseDate";
+import { SetsByReleaseDateList } from "../components/SetListByReleaseDate";
 
 class Home extends Component {
 
@@ -12,13 +12,12 @@ class Home extends Component {
 
   render() {
     const { sets } = this.props;
+    if (_.isEmpty(sets)) {return "loading"}
     return (
       <div className="home">
         <h1 className="titleContainer">Pick an edition</h1>
         <div className="setsBox">
-          <LazyComponent classname="setByYear" init={3} iteration={3}>
-            {RenderSetsByReleaseDate(sets) }
-          </LazyComponent>
+          <LazyComponent classname="setByYear" init={3} iteration={3}>{SetsByReleaseDateList(sets)}</LazyComponent>
         </div>
       </div>
     )}

@@ -22,5 +22,5 @@ const getPosition= (el) => {
     x: xPos,
     y: yPos
   };
-}
-export {getPosition}
+};
+export { getPosition }

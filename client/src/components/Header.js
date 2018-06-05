@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { IconUser } from "./custom/icons/icons";
+import { IconUser } from "./card/icons/icons";
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
 
 class Header extends Component {
@@ -8,11 +8,11 @@ class Header extends Component {
     isOpen: false
   };
 
-  toggle() {
+  toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
-  }
+  };
 
   render() {
     return (

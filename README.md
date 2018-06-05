@@ -1,1 +1,1 @@
-# magic-build
+# Manacard

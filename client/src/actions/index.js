@@ -1,6 +1,6 @@
 import { FETCH_SET, FETCH_SETS, SET_REVERSER, SET_SORTER, SET_VISIBILITY_FILTER } from './types';
 import { getAllSets, getSetFromEdition } from "../components/constantes";
-import { filterByColor, filterBySearch, filterByOwn } from "../components/custom/filters/index";
+import { filterByColor, filterBySearch, filterByOwn } from "../components/set/filters/index";
 import _  from 'lodash';
 
 export function fetchSets() {

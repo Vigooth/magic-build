@@ -3,6 +3,7 @@ $majorGrey : #464a4c;
 $footerColor : #2a262c;
 $cardWidth :  244px;
 $cardHeight: 340px ;
+
 body {
   background-color:$backgroundColor;
 }
@@ -36,9 +37,10 @@ header {
   }
 }
 .setByYear {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .page.container {
   flex-grow: 1;
@@ -225,14 +227,12 @@ footer {
   }
   span a{
     color: #eceeefb8;
-    width:100%;
     display: flex;
     justify-content: center;
     text-decoration: none;
 
   }
   span a:hover {
-    width:100%;
     border: 3px black solid;
     color: #ec971f;
     transition: .5s ease;
@@ -271,8 +271,9 @@ footer {
 .fixed{
   position:fixed;
   top: 0;
-  width: 92%;
-  z-index: 2;
+  left: 0;
+  width: 100%;
+  z-index: 3;
 }
 .filtersGroup {
   .colors {}

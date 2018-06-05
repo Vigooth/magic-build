@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Input } from "reactstrap";
-import { setOrder } from "../../../actions";
+import { setOrder } from "../../../actions/index";
 import { connect } from "react-redux";
 
 class Sorter extends Component {

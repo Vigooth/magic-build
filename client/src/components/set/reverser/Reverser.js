@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Input} from "reactstrap";
-import { setReverser } from "../../../actions";
+import { setReverser } from "../../../actions/index";
 import {connect} from "react-redux";
 
 class Reverser extends Component {

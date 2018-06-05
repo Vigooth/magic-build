@@ -2,26 +2,34 @@ import React from 'react';
 import _ from 'lodash';
 import { Link } from "react-router-dom";
 
-const setItem = set =>
-  <span className="edition" key={set.code}>
-      <Link to={`/set/${set.code}`}>
-        {set.name} <p style={{fontSize:'22px'}}>({set.cardsNumber})</p>
-      </Link>
-    </span>;
-
-const setList = (sets) => _.map(sets, set => setItem(set));
-
-const  RenderSetsByReleaseDate = (sets) => {
+const SetsByReleaseDateList = (sets) => {
   const
     test = _.orderBy(sets, 'releaseDate', 'desc'),
     setsSortedByDate = _.groupBy(test, (set) => _.split(set.releaseDate, '-', 1)),
     listReleaseDateDesc = _.reverse(_.keys(setsSortedByDate));
 
   return _.map(listReleaseDateDesc, releaseDate =>
-    <div className="setByYear" key={releaseDate}>
-      <h1>{releaseDate}</h1>
-      {setList(setsSortedByDate[releaseDate])}
-    </div>
+    <SetsByReleaseDateItem
+      key={releaseDate}
+      releaseDate={releaseDate}
+      setsSortedByDate={setsSortedByDate} />
   )
 };
-export { RenderSetsByReleaseDate }
+const SetsByReleaseDateItem = ({ releaseDate, setsSortedByDate }) =>
+  <div className="setByYear" key={releaseDate}>
+    <h1>{releaseDate}</h1>
+    <SetList sets={setsSortedByDate[releaseDate]} />
+  </div>;
+
+const SetList = ({ sets }) => _.map(sets, set => <SetItem key={set.code} {...set}/>);
+
+const SetItem = ({ code, name, cardsNumber }) =>
+  <span className="edition" key={code}>
+      <Link to={`/set/${code}`}>
+        {name} <p style={{fontSize:'22px'}}>({cardsNumber})</p>
+      </Link>
+    </span>;
+
+
+
+export { SetsByReleaseDateList }

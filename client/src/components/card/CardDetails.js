@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import _ from 'lodash';
-import { symbolColor } from "./constantes";
-
+import { cardScyfallImage, symbolColor } from "../constantes";
+import '../../containers/test.scss';
 class CardDetails extends Component {
   state = {
     modal: false
@@ -20,10 +20,10 @@ class CardDetails extends Component {
     return (
       <div>
         <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} external={externalCloseBtn}>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} external={externalCloseBtn} size="lg" style={{maxWidth:'80%'}}>
           <ModalHeader>{card.name}</ModalHeader>
           <ModalBody>
-            <img style={{'padding': '2px'}}  src={`http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=${card.multiverseid}&type=card`}/>
+            <img style={{'padding': '2px'}}  src={cardScyfallImage(card.number, set.code, 'en', 'normal' )} style={{width:'366px', height:'510px'}}/>
             {`Card name: ${card.name}`}<br />
             {`Edition: ${set.name}`}<br />
             Mana Cost: <ManaCostSymbol {...card} /><br />

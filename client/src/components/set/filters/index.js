@@ -9,5 +9,5 @@ export  {
   FilterSearchBtn,
   filterByColor,
   filterByOwn,
-  filterBySearch
+  filterBySearch,
 };

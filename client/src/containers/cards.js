@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import { fetchMyCards } from '../actions/cards';
 import  Card  from './card';
-import LazyComponent from "../LazyComponent";
+import LazyComponent from "../lazyComponent/LazyComponent";
 
 class Cards extends Component {
   static propTypes = {
@@ -27,7 +27,6 @@ class Cards extends Component {
   );
 
   render() {
-    console.log(this.props)
     const { set, cards } = this.props;
     if ( this.setOrCardsIsNotReady(set, cards) ) return <div>Loading...</div>;
 
@@ -37,7 +36,7 @@ class Cards extends Component {
       <div className="cardsBox">
         <h1 className="titleContainer">You have {numberOfcardsOwned }/{_.size(set.cards)} cards</h1>
         <div className="cardsContent">
-          <LazyComponent>{this.getCards(set)}</LazyComponent>
+          <LazyComponent classname="cardBox">{this.getCards(set)}</LazyComponent>
         </div>
       </div>
     )

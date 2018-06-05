@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 import  { fetchSet } from '../actions/index';
 import PropTypes from 'prop-types'
 import Cards from "./cards";
-import { Filters } from "../components/Filters";
 import { filterSet } from "../actions/index";
 import { getPosition } from "../utils";
-import Sorter from "../components/custom/sorter/Sorter";
-import Reverser from "../components/custom/reverser/Reverser";
+import { SetControls } from "../components/set/SetControls";
 
 class Set extends Component {
   static propTypes = {
@@ -47,17 +45,11 @@ class Set extends Component {
 
   render() {
     const { set, visibilityFilter } = this.props;
-
     if (set.code!==this.props.match.params.set) return <div>Loading...</div>;
     return (
       <div className="set">
         <h1 className="titleContainer">{ set.name }</h1>
-        <Filters  {...visibilityFilter} />
-        <div className="filter-order">
-          <Sorter />
-          <Reverser />
-        </div>
-        <div className="filterScroll"/>
+        <SetControls visibilityFilter = {visibilityFilter}/>
         <Cards set={set} />
       </div>
     )
