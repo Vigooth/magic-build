@@ -1,7 +1,8 @@
 const AUTH_USER = 'auth_user';
 const UNAUTH_USER = 'unauth_user';
 const AUTH_ERROR = 'auth_error';
-const ROOT_URL = 'http://localhost:5000';
+//const ROOT_URL = 'http://localhost:5000';
+const ROOT_URL = 'https://warm-plateau-27147.herokuapp.com';
 
 const FETCH_SET = 'FETCH_SET';
 const FETCH_SETS = 'FETCH_SETS';
