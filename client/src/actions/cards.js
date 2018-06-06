@@ -1,6 +1,5 @@
-import { FETCH_MYCARDS } from './types'
+import { FETCH_MYCARDS, ROOT_URL } from './types'
 import axios from "axios/index";
-const ROOT_URL = 'http://localhost:3090';
 const UPDATE_MY_CARDS_URL = `${ROOT_URL}/cards/mycards/update`;
 const FETCH_MY_CARDS_URL = `${ROOT_URL}/cards/mycards`;
 function incOrDec(operation, value) {
