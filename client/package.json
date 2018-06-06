@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config=config/webpack.dev.js",
+    "build": "webpack --config=config/webpack.prod.js",
+    "build:dev": "webpack --config=config/webpack.dev.js",
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server --config=config/webpack.dev.js",
     "prod": "node src/server/main.js"
   },
@@ -43,8 +44,11 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "express": "^4.16.3",
     "lodash": "^4.17.10",
+    "mini-css-extract-plugin": "^0.4.0",
     "mtgsdk": "^0.3.0",
+    "optimize-css-assets-webpack-plugin": "^4.0.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",

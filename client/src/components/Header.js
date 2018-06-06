@@ -34,7 +34,7 @@ class Header extends Component {
                 <DropdownItem><Link  to="/settings?tab=account">Profile </Link></DropdownItem>
                 <DropdownItem><Link  to="/settings">Settings </Link></DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem>Log out</DropdownItem>
+                <DropdownItem><Link  to="/signout">Log out </Link></DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </div>
