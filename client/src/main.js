@@ -1,6 +1,6 @@
-require("babel-runtime/regenerator");
 require("babel-register");
-require("webpack-hot-middleware/client?reload=true");
+import './favicons/favicons';
 require("./main.scss");
 require("./index.html");
 require("./index");
+console.log(`Environnement is ${process.env.NODE_ENV}`);

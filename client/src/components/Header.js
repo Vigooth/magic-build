@@ -19,7 +19,6 @@ class Header extends Component {
       <header className="navbar">
         <nav className="nav-item">
           <div className="header-board-buttons">
-            <IconUser size="32px"/>
           </div>
           <div className="header-title">
             <Link className="title" to="/">MANACARD </Link>

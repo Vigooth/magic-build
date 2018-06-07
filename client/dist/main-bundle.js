@@ -62,7 +62,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8fb25ea93992b11f5322"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "176f570ce895e684bd01"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -17357,6 +17357,17 @@ if (true) {
 }
 
 module.exports = warning;
+
+/***/ }),
+
+/***/ "./node_modules/file-loader/dist/cjs.js?name=images/[name].[ext]!./src/favicons/favicon.ico":
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/file-loader/dist/cjs.js?name=images/[name].[ext]!./src/favicons/favicon.ico ***!
+  \**************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/favicon.ico";
 
 /***/ }),
 
@@ -85531,7 +85542,8 @@ Object.defineProperty(exports, "__esModule", {
 var AUTH_USER = 'auth_user';
 var UNAUTH_USER = 'unauth_user';
 var AUTH_ERROR = 'auth_error';
-var ROOT_URL = 'http://localhost:5000';
+//const ROOT_URL = 'http://localhost:5000';
+var ROOT_URL = 'https://manacard-s785.herokuapp.com';
 
 var FETCH_SET = 'FETCH_SET';
 var FETCH_SETS = 'FETCH_SETS';
@@ -85772,11 +85784,7 @@ var Header = function (_Component) {
         _react2.default.createElement(
           'nav',
           { className: 'nav-item' },
-          _react2.default.createElement(
-            'div',
-            { className: 'header-board-buttons' },
-            _react2.default.createElement(_icons.IconUser, { size: '32px' })
-          ),
+          _react2.default.createElement('div', { className: 'header-board-buttons' }),
           _react2.default.createElement(
             'div',
             { className: 'header-title' },
@@ -88439,6 +88447,56 @@ if(true) {
 
 /***/ }),
 
+/***/ "./src/favicons sync recursive ./!./!./node_modules/file-loader/dist/cjs.js?name=images/[name].[ext]!./ \\.(svg|png|ico|xml|json)$":
+/*!**********************************************************************************************************************!*\
+  !*** ./src/favicons sync !./node_modules/file-loader/dist/cjs.js?name=images/[name].[ext] \.(svg|png|ico|xml|json)$ ***!
+  \**********************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./favicon.ico": "./node_modules/file-loader/dist/cjs.js?name=images/[name].[ext]!./src/favicons/favicon.ico"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	var module = __webpack_require__(id);
+	return module;
+}
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) { // check for number or string
+		var e = new Error('Cannot find module "' + req + '".');
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return id;
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./src/favicons sync recursive ./!./!./node_modules/file-loader/dist/cjs.js?name=images/[name].[ext]!./ \\.(svg|png|ico|xml|json)$";
+
+/***/ }),
+
+/***/ "./src/favicons/favicons.js":
+/*!**********************************!*\
+  !*** ./src/favicons/favicons.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var faviconsContext = __webpack_require__("./src/favicons sync recursive ./!./!./node_modules/file-loader/dist/cjs.js?name=images/[name].[ext]!./ \\.(svg|png|ico|xml|json)$");
+faviconsContext.keys().forEach(faviconsContext);
+
+/***/ }),
+
 /***/ "./src/index.html":
 /*!************************!*\
   !*** ./src/index.html ***!
@@ -88446,7 +88504,7 @@ if(true) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css\" integrity=\"sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ\" crossorigin=\"anonymous\">\r\n</head>\r\n<body>\r\n<div class=\"app\"></div>\r\n<script src=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\" integrity=\"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN\" crossorigin=\"anonymous\"></script>\r\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\" integrity=\"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q\" crossorigin=\"anonymous\"></script>\r\n<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\" integrity=\"sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl\" crossorigin=\"anonymous\"></script>\r\n</body>\r\n</html>\r\n";
+module.exports = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css\" integrity=\"sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ\" crossorigin=\"anonymous\">\r\n    <link rel=\"icon\" type=\"image/png\" sizes=\"48x48\" href=\"images/favicon.ico\">\r\n</head>\r\n<body>\r\n<div class=\"app\"></div>\r\n\r\n<script src=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\" integrity=\"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN\" crossorigin=\"anonymous\"></script>\r\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\" integrity=\"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q\" crossorigin=\"anonymous\"></script>\r\n<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\" integrity=\"sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl\" crossorigin=\"anonymous\"></script>\r\n</body>\r\n</html>\r\n";
 
 /***/ }),
 
@@ -88688,12 +88746,14 @@ exports.default = LazyComponent;
 "use strict";
 
 
-__webpack_require__(/*! babel-runtime/regenerator */ "./node_modules/babel-runtime/regenerator/index.js");
+__webpack_require__(/*! ./favicons/favicons */ "./src/favicons/favicons.js");
+
 __webpack_require__(/*! babel-register */ "./node_modules/babel-register/lib/browser.js");
-__webpack_require__(/*! webpack-hot-middleware/client?reload=true */ "./node_modules/webpack-hot-middleware/client.js?reload=true");
+
 __webpack_require__(/*! ./main.scss */ "./src/main.scss");
 __webpack_require__(/*! ./index.html */ "./src/index.html");
 __webpack_require__(/*! ./index */ "./src/index.js");
+console.log("Environnement is " + "development");
 
 /***/ }),
 
@@ -89184,14 +89244,16 @@ exports.getPosition = getPosition;
 /***/ }),
 
 /***/ 0:
-/*!******************************************!*\
-  !*** multi babel-polyfill ./src/main.js ***!
-  \******************************************/
+/*!**************************************************************************************************************!*\
+  !*** multi babel-polyfill ./src/main.js babel-runtime/regenerator webpack-hot-middleware/client?reload=true ***!
+  \**************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! babel-polyfill */"./node_modules/babel-polyfill/lib/index.js");
-module.exports = __webpack_require__(/*! ./src/main.js */"./src/main.js");
+__webpack_require__(/*! ./src/main.js */"./src/main.js");
+__webpack_require__(/*! babel-runtime/regenerator */"./node_modules/babel-runtime/regenerator/index.js");
+module.exports = __webpack_require__(/*! webpack-hot-middleware/client?reload=true */"./node_modules/webpack-hot-middleware/client.js?reload=true");
 
 
 /***/ })

@@ -8,8 +8,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 //Set up default mongoose connection
-const mongoDB = 'mongodb://localhost/magicBuild';
-mongoose.connect(mongoDB);
+const mongoLocal = 'mongodb://localhost/magicBuild';
+mongoose.connect(process.env.MONGODB_URI || mongoLocal);
+
 // Get Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
 
