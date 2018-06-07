@@ -9,7 +9,7 @@ const cors = require('cors');
 
 //Set up default mongoose connection
 const mongoLocal = 'mongodb://localhost/magicBuild';
-mongoose.connect(process.env.MONGODB_URI || mongoLocal);
+mongoose.connect("mongodb://vigooth:N4v4rHaa@ds147190.mlab.com:47190/manacard-test" || mongoLocal);
 
 // Get Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
@@ -20,7 +20,7 @@ app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
 router(app);
 // Server Setup
-const port = process.env.PORT || 6080;
+const port = process.env.PORT || 4080;
 const server = http.createServer(app);
 server.listen(port);
 console.log('Server listening : ',port);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import  { fetchSet } from '../actions/index';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import Cards from "./cards";
 import { filterSet } from "../actions/index";
 import { getPosition } from "../utils";
