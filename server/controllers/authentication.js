@@ -38,8 +38,8 @@ exports.signup = function(req, res, next) {
       password
     });
     // Respond to request indicating the user was created
-    user.save(function(err) {
-      res.json({ token: tokenForUser(user) })
+    user.save(function(err, userr) {
+      res.json({ token: tokenForUser(user), userr })
     })
   });
 

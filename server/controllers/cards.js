@@ -35,6 +35,7 @@ exports.updateMyCards = function(req, res, next) {
   });
 
   Card.findOne({userId:_id}, function(err, result)  {
+    console.log("ICI")
     if(!result) {
       console.log("saving new")
       card.save()

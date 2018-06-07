@@ -8,8 +8,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 //Set up default mongoose connection
-const mongoLocal = 'mongodb://localhost/magicBuild';
-mongoose.connect("mongodb://vigooth:N4v4rHaa@ds147190.mlab.com:47190/manacard-test" || mongoLocal);
+const url = process.env.MONGODB_URI ||'mongodb://localhost/magicBuild';
+mongoose.connect(url);
 
 // Get Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
@@ -24,3 +24,5 @@ const port = process.env.PORT || 4080;
 const server = http.createServer(app);
 server.listen(port);
 console.log('Server listening : ',port);
+console.log('DATABASE : ',url);
+console.log('Server listening : ',process.env.PORT );
