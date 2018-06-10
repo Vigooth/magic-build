@@ -21,8 +21,11 @@ class Login extends Component {
   render() {
     return (
       <div className="login">
+        <h1>{this.state.signin ? 'Sign in Manacard': 'Sign up Manacard'}</h1>
+        <hr />
         {this.renderAuth()}
-        <button onClick={this.toggleSignin} className={`btn btn-primary`}>{this.state.signin ? 'No account ? Click here': 'Already registred ? Click here'}</button>
+        <button onClick={this.toggleSignin} className={`btn btn-login `} style={{"width": "100%",
+          "maxWidth": "550px"}}>{this.state.signin ? 'No account ? Click here': 'Already registred ? Click here'}</button>
       </div>
     )
   }

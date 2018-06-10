@@ -1,11 +1,17 @@
-$backgroundColor : #9e6d48;
+//$backgroundColor : #9e6d48;
+$backgroundColor : #c4bdb861;
 $majorGrey : #464a4c;
+$majorBtn : #39a3d9;
+$secondBtn : #464a4cb8;
 $footerColor : #2a262c;
 $cardWidth :  244px;
 $cardHeight: 340px ;
 
 body {
-  background-color:$backgroundColor;
+  background-color: $backgroundColor;
+}
+.btn-major {
+  background-color: $majorBtn!important;
 }
 .wrapper {
   min-height: 100vh;
@@ -36,6 +42,34 @@ header {
 
   }
 }
+#svg3713 {
+  animation: rotate 1.4s linear infinite;
+  -webkit-animation: rotate 2.5s linear infinite
+}
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.btn-login {
+  border: 2px black solid;
+  background-color: $secondBtn;
+  margin-bottom: 5px;
+}
+.btn-login:hover {
+  cursor: pointer;
+}
 .setByYear {
   display: flex;
   width: 100%;
@@ -43,6 +77,9 @@ header {
   justify-content: center;
 }
 .page.container {
+  flex-grow: 1;
+}
+.page {
   flex-grow: 1;
 }
 footer {
@@ -59,6 +96,35 @@ footer {
   }
 
 }
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  hr {
+    width: 40%;
+    border-top: 5px solid rgb(170, 224, 250);
+    margin-bottom: 30px;
+  }
+  form{
+    width: 100%;
+     max-width: 550px;
+   display: flex;
+   flex-direction: column;
+   align-content: center;
+    label{
+      width: 100%;
+    }
+    input{
+      height:50px;
+      font-size: 1.3rem;
+    }
+
+ }
+}
+
 .header-title .title {
   color: #eceeefb8;
   font: 34px  bold;

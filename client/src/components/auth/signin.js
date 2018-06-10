@@ -11,14 +11,12 @@ class Signin extends Component {
     const { handleSubmit } = this.props;
     return  (<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
       <fieldset className="form-group">
-        <label>Email:</label>
-        <Field name="email" component="input" type="text" className="form-control" />
+        <label><Field name="email" component="input" type="text" placeholder="Your email" className="form-control" /></label>
       </fieldset>
       <fieldset className="form-group">
-        <label>Password:</label>
-        <Field name="password"  component="input" type="password" className="form-control" />
+        <label><Field name="password"  component="input" type="password" placeholder="Your password" className="form-control" /></label>
       </fieldset>
-      <button type="submit" className={`btn btn-primary`}>Sign up</button>
+      <button type="submit" className={`btn btn-login btn-major`}>Sign in</button>
     </form>)
   }
 }

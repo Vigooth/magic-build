@@ -5,6 +5,7 @@ import _ from 'lodash';
 import { fetchMyCards } from '../actions/cards';
 import  Card  from './card';
 import LazyComponent from "../lazyComponent/LazyComponent";
+import { Spinner } from "../components/card/icons/spinner";
 
 class Cards extends Component {
   static propTypes = {
@@ -28,7 +29,7 @@ class Cards extends Component {
 
   render() {
     const { set, cards } = this.props;
-    if ( this.setOrCardsIsNotReady(set, cards) ) return <div>Loading...</div>;
+    if ( this.setOrCardsIsNotReady(set, cards) ) return <Spinner />;
 
     const numberOfcardsOwned = getCardsOwned(cards.owned.multiverseids,set.cards);
 

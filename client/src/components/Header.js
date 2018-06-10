@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { IconUser } from "./card/icons/icons";
+import { IconUser, Logo } from "./card/icons/icons";
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
 
 class Header extends Component {
@@ -19,6 +19,7 @@ class Header extends Component {
       <header className="navbar">
         <nav className="nav-item">
           <div className="header-board-buttons">
+            <Logo size="64px"/>
           </div>
           <div className="header-title">
             <Link className="title" to="/">MANACARD </Link>

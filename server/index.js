@@ -11,6 +11,11 @@ const cors = require('cors');
 const url = process.env.MONGODB_URI ||'mongodb://localhost/magicBuild';
 mongoose.connect(url);
 
+//Set up default mongoose connection
+//const mongoDB = 'mongodb://localhost/magicBuild';
+const mongoDB = 'mongodb://vigooth:N4v4rHaa@ds147190.mlab.com:47190/manacard-test';
+console.log(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/magicBuild");
 // Get Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
 

@@ -8,22 +8,21 @@ function tokenForUser(user) {
 exports.signin = function(req, res, next) {
   // User has already had they email and password auth'd
   // We just need to give them a token
-  console.log(tokenForUser(req.user))
-  console.log(tokenForUser(req.user))
+
   const { user : {_id, email }} = req;
   res.send({
     token: tokenForUser(req.user),
-    user: { id:_id, email }
+    user: { id:_id, email:email }
   })
 };
 exports.token = function(req, res, next) {
   const _id = jwt.decode(req.body.token, config.secret).sub;
   return User.findOne({_id}, function(err, result){res.json({ userId: result })});
-  console.log(req.body)
-}
+};
 exports.signup = function(req, res, next) {
 
-  const { body: {email, password } } = req;
+  const { body: { email, password } } = req;
+
   // See if a user with the given email exists
   User.findOne({ email }, function(err, existingUser) {
     if( !email || !password ) res.status(422).send({error: 'You must provide email and password'});
@@ -38,9 +37,12 @@ exports.signup = function(req, res, next) {
       password
     });
     // Respond to request indicating the user was created
-    user.save(function(err, userr) {
-      res.json({ token: tokenForUser(user), userr })
-    })
+    user.save(function(err) {
+      if (err) {
+        res.json({err:"Error ! User could not be saved "})}
+      else {
+        res.json({ token: tokenForUser(user) })
+      }
+    });
   });
-
 };

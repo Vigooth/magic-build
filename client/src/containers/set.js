@@ -6,6 +6,7 @@ import Cards from "./cards";
 import { filterSet } from "../actions/index";
 import { getPosition } from "../utils";
 import { SetControls } from "../components/set/SetControls";
+import { Spinner } from "../components/card/icons/spinner";
 
 class Set extends Component {
   static propTypes = {
@@ -45,7 +46,7 @@ class Set extends Component {
 
   render() {
     const { set, visibilityFilter } = this.props;
-    if (set.code!==this.props.match.params.set) return <div>Loading...</div>;
+    if (set.code!==this.props.match.params.set) return <Spinner />;
     return (
       <div className="set">
         <h1 className="titleContainer">{ set.name }</h1>
