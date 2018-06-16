@@ -23,4 +23,13 @@ const getPosition= (el) => {
     y: yPos
   };
 };
-export { getPosition }
+const reduceLogicalOperator = (operator) => {
+  switch (operator) {
+    case 'OR' :  return (array) =>_.reduce(array, (a, b)=> (a || b));
+    case 'AND' : return (array) =>_.reduce(array, (a, b)=> (a && b));
+    case 'NOR' : return (array) =>_.reduce(array, (a, b)=> !(a || b));
+    case 'NAND' : return (array) =>_.reduce(array, (a, b)=> !(a || b));
+    default : return null
+  }
+};
+export { getPosition, reduceLogicalOperator }

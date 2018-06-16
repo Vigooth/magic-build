@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { IconUser, Logo } from "./card/icons/icons";
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
+import { toggleMenu } from '../actions/index'
+import { connect } from "react-redux";
 
 class Header extends Component {
   state = {
@@ -16,10 +18,10 @@ class Header extends Component {
 
   render() {
     return (
-      <header className="navbar">
+      <header className="navbar" >
         <nav className="nav-item">
-          <div className="header-board-buttons">
-            <Logo size="64px"/>
+          <div className="header-board-buttons" onClick={this.props.toggleMenu}>
+            <Logo size="64px"  />
           </div>
           <div className="header-title">
             <Link className="title" to="/">MANACARD </Link>
@@ -43,4 +45,4 @@ class Header extends Component {
     )
   }
 }
-export default (Header);
+export default   connect(null, { toggleMenu })(Header);

@@ -10,10 +10,14 @@ class Home extends Component {
   componentWillMount() {
     this.props.fetchSets()
   }
+  isLoading() {
+    const { sets } = this.props;
+    return _.isEmpty(sets)||!_.isArray(sets);
+  }
 
   render() {
     const { sets } = this.props;
-    if (_.isEmpty(sets)) {return <Spinner />}
+    if (this.isLoading()) return <Spinner />;
     return (
       <div className="home">
         <h1 className="titleContainer">Pick an edition</h1>

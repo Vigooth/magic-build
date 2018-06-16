@@ -7,6 +7,84 @@ $footerColor : #2a262c;
 $cardWidth :  244px;
 $cardHeight: 340px ;
 
+.menu-overlay.hide {
+  visibility: hidden;
+  .menu-overlay-container {
+
+    .menuBox {
+      position: absolute;
+      left: -240px;
+      visibility: hidden;
+    }
+  }
+}
+
+
+
+.menu-overlay {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 1;
+
+  .menu-overlay-container {
+    display: flex;
+    flex-direction: row;
+    .menuBox {
+      position: absolute;
+      left: 0;
+      width: 240px;
+      transition: all 0.2s ease-in;
+      background-color: #fcfeff;
+      height: 100vh;
+      .header {
+        padding: 8px 16px 16px 16px;
+        #logo {
+          cursor: pointer;
+        }
+      }
+    }
+    .overlay {
+      height: 100vh;
+      width: 100%;
+    }
+  }
+  //transform: translate3d(100%, 0px, 0px);
+}
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  .item {
+    display: flex;
+    width:100%;
+    height:50px;
+    align-items: center;
+    padding-left: 15px;
+    .icon {
+      margin-right:22px;
+    }
+    p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    a {
+      display: flex;
+      align-items: center;
+      padding-left: 15px;
+      color: #453d4c;
+    }
+  }
+  .item:hover {
+    background-color: #f3f3f3;
+    cursor: pointer;
+
+  }
+}
 body {
   background-color: $backgroundColor;
 }
@@ -29,6 +107,9 @@ header {
   .header-board-buttons {
     display: flex;
     flex-basis: 37%;
+    #logo {
+      cursor: pointer;
+    }
   }
   .header-title {
     display: flex;
@@ -110,10 +191,10 @@ footer {
   }
   form{
     width: 100%;
-     max-width: 550px;
-   display: flex;
-   flex-direction: column;
-   align-content: center;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
     label{
       width: 100%;
     }
@@ -122,7 +203,7 @@ footer {
       font-size: 1.3rem;
     }
 
- }
+  }
 }
 
 .header-title .title {
@@ -250,6 +331,8 @@ footer {
     }
     .top {
       flex-basis : 18%;
+      display: flex;
+      justify-content: flex-end;
     }
     .middle {
       flex-basis : 64%;
@@ -345,15 +428,46 @@ footer {
   .colors {}
   .search{
     flex-grow: 2;
+    min-width: 150px;
   }
   .own {
     flex-grow: 1;
 
   }
 }
-.searchCardBar {
-  width: 100%;
+.searchCardBarBox {
+  .flagsBox {
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    z-index: 2;
+    min-width: 30px;
+    border: 2px solid #4b404021;
+    border-radius: 4%;
+    background-color: #c5c5c5a6;
+    .flagsItems {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-items: center;
+      svg {
+        margin: 1px;
+      }
+    }
+  }
+  .searchCardBar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  input {
+    padding-left: 50px;
+  }
 }
+
 .btn-filterColor {
   border: 2px black solid;
   background-color: $majorGrey;
@@ -372,4 +486,15 @@ footer {
   border: 2px black solid;
   background-color: #464a4c;
 
+}
+.spinner {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+#heart {
+  fill: red;
+}
+#wishList:hover {
+  cursor: po;
 }

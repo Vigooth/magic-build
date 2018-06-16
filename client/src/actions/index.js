@@ -1,4 +1,4 @@
-import { FETCH_SET, FETCH_SETS, SET_REVERSER, SET_SORTER, SET_VISIBILITY_FILTER } from './types';
+import { FETCH_MYSETS, FETCH_SET, FETCH_SETS, SET_REVERSER, SET_SORTER, SET_VISIBILITY_FILTER } from './types';
 import { getAllSets, getSetFromEdition } from "../components/constantes";
 import { filterByColor, filterBySearch, filterByOwn } from "../components/set/filters/index";
 import _  from 'lodash';
@@ -12,6 +12,25 @@ export function fetchSets() {
       })
   }
 }
+export function fetchMySets() {
+  return  async (dispatch, getState) => {
+    const sets = await getAllSets();
+    const { cards : { owned } } = getState();
+      dispatch({
+        type: FETCH_MYSETS,
+        payload: {owned,sets }
+      })
+  }
+}
+export const toggleMenu = () => {
+  return  (dispatch, getState) => {
+    const { sidebarMenu } = getState();
+    dispatch({
+      type: 'TOGGLE_MENU',
+      payload: !sidebarMenu
+    })
+  }
+};
 export function fetchSet(edition) {
   return  async (dispatch, getState) => {
     const
@@ -57,8 +76,8 @@ const mapByMultiverseid = (collection) => _.map(collection, object => object["mu
 export const filterSet = ({ set, visibilityFilter, cards, sorter, reverser }) => {
   const reverseIfNeeded  = (arr) => reverser ? _.reverse(arr) : arr;
   const visibleCards = _.flow(_.sortBy, mapByMultiverseid, reverseIfNeeded);
+  if(_.isEmpty(set))return {}
   let cardsFiltred = set.cards;
-
   const FiltersNames = _.keys(visibilityFilter);
   _.forEach(FiltersNames, filterName => {
     const filterCriteria = visibilityFilter[filterName] || [];
@@ -70,6 +89,32 @@ export const filterSet = ({ set, visibilityFilter, cards, sorter, reverser }) =>
     }
   });
 
-  return {...set, cards:_.keyBy(cardsFiltred, "multiverseid"), visibleCards: visibleCards(cardsFiltred, sorter)}
+  return {[set.code]:{...set, cards:_.keyBy(cardsFiltred, "multiverseid"), visibleCards: visibleCards(cardsFiltred, sorter)}}
+
+};
+export const filterSets = ({ sets, visibilityFilter, cards, sorter, reverser }) => {
+  if(_.isEmpty(sets) || _.isArray(sets)) return {};
+  const reverseIfNeeded  = (arr) => reverser ? _.reverse(arr) : arr;
+  const visibleCards = _.flow(_.sortBy, mapByMultiverseid, reverseIfNeeded);
+  const setsKeys = _.keys(sets)
+  let final = sets;
+  _.forEach(setsKeys, code => {
+    let newSet = {}
+    let cardsFiltred = _.keyBy(sets[code].cards, "multiverseid");
+    const FiltersNames = _.keys(visibilityFilter);
+    _.forEach(FiltersNames, filterName => {
+      const filterCriteria = visibilityFilter[filterName] || [];
+      switch(filterName) {
+        case 'colors' : cardsFiltred = filterByColor(cardsFiltred, filterCriteria); break;
+        case 'own' :  cardsFiltred = filterByOwn(cardsFiltred,filterCriteria, cards.owned );break;
+        case 'search' : cardsFiltred = filterBySearch(cardsFiltred, filterCriteria) ;break;
+      }
+    });
+
+    newSet =  {...sets[code], cards:_.keyBy(cardsFiltred, "multiverseid"), visibleCards: visibleCards(cardsFiltred, sorter)};
+    final = {...final, [code]:newSet}
+  });
+
+  return final
 
 };

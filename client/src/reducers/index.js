@@ -7,6 +7,8 @@ import { reducer as form } from 'redux-form';
 import visibilityFilterReducer from './visibilityFilter';
 import reducer_sorter from "./reducer_sorter";
 import reducer_reverser from "./reducer_reverser";
+import sidebarMenu from "./reducer_sidebarMenu"
+
 const rootReducer = combineReducers({
   state: (state = {}) => state,
   set: SetReducer,
@@ -16,6 +18,7 @@ const rootReducer = combineReducers({
   visibilityFilter : visibilityFilterReducer,
   sorter:reducer_sorter,
   reverser: reducer_reverser,
+  sidebarMenu,
   form
 });
 

@@ -23,7 +23,7 @@ class CardDetails extends Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} external={externalCloseBtn} size="lg" style={{maxWidth:'80%'}}>
           <ModalHeader>{card.name}</ModalHeader>
           <ModalBody>
-            <img style={{'padding': '2px'}}  src={cardScyfallImage(card.number, set.code, 'en', 'normal' )} style={{width:'366px', height:'510px'}}/>
+            <img src={cardScyfallImage(card.number, set.code, 'en', 'normal' )} style={{width:'366px', height:'510px', 'padding': '2px'}}/>
             {`Card name: ${card.name}`}<br />
             {`Edition: ${set.name}`}<br />
             Mana Cost: <ManaCostSymbol {...card} /><br />

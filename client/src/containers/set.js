@@ -43,15 +43,19 @@ class Set extends Component {
       y.classList.remove("active")
     }
   };
+  isLoading = () => {
+    const { set, match : {params } } = this.props;
+    return _.isEmpty(set)||set[params.set]===undefined
+  };
 
   render() {
-    const { set, visibilityFilter } = this.props;
-    if (set.code!==this.props.match.params.set) return <Spinner />;
+    const { set , visibilityFilter, match : {params } } = this.props;
+    if (this.isLoading()) return <Spinner />;
     return (
       <div className="set">
-        <h1 className="titleContainer">{ set.name }</h1>
+        <h1 className="titleContainer">{ set[params.set].name }</h1>
         <SetControls visibilityFilter = {visibilityFilter}/>
-        <Cards set={set} />
+        <Cards set={set[params.set]} />
       </div>
     )
   }

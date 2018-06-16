@@ -8,9 +8,10 @@ import { CardActions } from "../components/card/CardActions";
 class Card extends Component {
   static propTypes = {
     set: PropTypes.object.isRequired,
-    cards: PropTypes.object.isRequired,
+    card: PropTypes.object,
     updateMyCards: PropTypes.func.isRequired,
     multiverseid: PropTypes.number.isRequired,
+    myCard: PropTypes.object,
   };
 
   state = {
@@ -25,10 +26,9 @@ class Card extends Component {
     const
       preload                                                 = this.state.imageLoaded ? '' : 'image-preload',
       visibility                                              = this.state.imageLoaded ? 'visible' : 'hidden',
-      { cards : { owned }, set, multiverseid, updateMyCards } = this.props,
-      card                                                    = set.cards[multiverseid],
-      cardOwned                                               = owned.byMultiverseid[multiverseid] || {},
-      addCssIfCardIsOwned                                     = cardOwned.number ? 'owned' : '';
+      { set, updateMyCards } = this.props,
+      card                                                    = this.props.card,
+      addCssIfCardIsOwned                                     = this.props.myCard.number ? 'owned' : '';
     return (
       <div className={`cardBox ${preload}`}>
         <img
@@ -38,8 +38,8 @@ class Card extends Component {
         <CardActions
           updateMyCards={updateMyCards}
           set={set}
-          multiverseid={multiverseid}
-          cardOwned={cardOwned}/>
+          card={card}
+          cardOwned={this.props.myCard || {}}/>
       </div>)
   }
 }

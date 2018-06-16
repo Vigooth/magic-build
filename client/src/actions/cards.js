@@ -1,5 +1,6 @@
 import { FETCH_MYCARDS, ROOT_URL } from './types'
 import axios from "axios/index";
+
 const UPDATE_MY_CARDS_URL = `${ROOT_URL}/cards/mycards/update`;
 const FETCH_MY_CARDS_URL = `${ROOT_URL}/cards/mycards`;
 function incOrDec(operation, value) {
@@ -9,18 +10,16 @@ function incOrDec(operation, value) {
   }
 }
 
-export function updateMyCards (action, multiverseid) {
+export function updateMyCards (action, multiverseid, code, number) {
   return (dispatch, getState) => {
-    const
-      { cards : { owned }, set: { code } } = getState(),
-      token = localStorage.getItem('token'),
-      actualNumber = owned.byMultiverseid[multiverseid]  ? owned.byMultiverseid[multiverseid].number : 0,
+      const token = localStorage.getItem('token'),
+      actualNumber = number || 0,
       card =  {multiverseid, number : incOrDec(action,actualNumber)};
     axios.post(UPDATE_MY_CARDS_URL, { token, code, card })
       .then(res =>     {
         dispatch({
           type: FETCH_MYCARDS,
-          payload: res.data.myCards[code]
+          payload: res.data.myCards
         })}
       )
   }}

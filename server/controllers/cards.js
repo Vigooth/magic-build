@@ -5,21 +5,24 @@ const config = require('../config');
 exports.mycard = function(req, res, next) {
   const
     _id = jwt.decode(req.body.token, config.secret).sub,
-    { code } = req.body,
-    card = new Card ({
-      myCards: {[code]: []},
-      userId: _id
-    });
+    { code } = req.body;
   // Find if user exist
   Card.findOne({ userId: _id }, function(err, result) {
     console.log(result)
     // If user exists
     if (result) {
-      res.send(result.myCards[code])
+       res.send(result.myCards)
+      //(!code) ?       res.send(result.myCards) : res.send(result.myCards[code])
+
+
     }else {
       // Else create new Card
+      const card = new Card ({
+        myCards: {[code || "DOM"]: []},
+        userId: _id
+      });
       card.save(function(err, insertedCard){
-        res.send(insertedCard)
+        res.send(insertedCard.myCards)
 
       })
     }

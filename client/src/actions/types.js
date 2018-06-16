@@ -6,7 +6,7 @@ const ROOT_URL = process.env.NODE_ENV ==="production" ?'https://manacard-server.
 
 const FETCH_SET = 'FETCH_SET';
 const FETCH_SETS = 'FETCH_SETS';
-
+const FETCH_MYSETS = 'FETCH_MYSETS';
 const FETCH_MYCARDS = 'FETCH_MYCARDS';
 
 const SET_SORTER = 'SET_SORTER';
@@ -19,6 +19,7 @@ export {
   UNAUTH_USER,
   FETCH_SET,
   FETCH_SETS,
+  FETCH_MYSETS,
   FETCH_MYCARDS,
   SET_SORTER,
   SET_REVERSER,
