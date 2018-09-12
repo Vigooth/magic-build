@@ -8,6 +8,36 @@ const IconPlus = (props) =>{
   </svg>;
 };
 
+const IconDetails = (props) =>{
+  const { size = "25px", color } = props;
+  return <svg
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.1"
+    id="Calque_1"
+    onClick={props.onClick}
+    style={props.style}
+    viewBox="0 0 72 43"
+    width={props.width || "72"}
+    height={props.height || "43"}
+  >
+    <g
+      id="layer1"
+      style={{"display":"inline"}}
+      transform="translate(-0.29550826,-0.105406)"><g
+      id="g51"
+      transform="translate(-11.10238,-22.894594)"><path
+      d="M 80.2,44.3 C 74.8,52.4 65.5,63.1 47.3,63.1 29.1,63.1 20.5,53.5 14.4,44.3 20.8,34.7 29.1,25.5 47.3,25.5 65.5,25.5 75,36.4 80.2,44.3 Z"
+      id="path37"
+      style={{"fill":"white","stroke":"#000000","strokeWidth":"5","strokeMiterlimit":"10"}} /><circle
+      cx="47.299999"
+      cy="44.299999"
+      r="12.3"
+      id="circle49"
+      style={{"fill":"#e3a8a8","stroke":"#000000","strokeWidth":"5","strokeMiterlimit":"10"}} />
+    </g></g>
+  </svg>
+};
+
 const IconMinus = (props) => {
   const { size = "25px" } = props;
   return <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox={`0 0 25 25`}>
@@ -28,13 +58,15 @@ const Logo = (props) => <svg width={props.size}  height={props.size} viewBox={`0
   </g>
 </svg>;
 
+const IconMenu = ({size = '24px', onMenuClick}) => <svg version="1.2" id="iconMenu"  onClick={onMenuClick} baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24"><path d="M19 17h-14c-1.103 0-2 .897-2 2s.897 2 2 2h14c1.103 0 2-.897 2-2s-.897-2-2-2zM19 10h-14c-1.103 0-2 .897-2 2s.897 2 2 2h14c1.103 0 2-.897 2-2s-.897-2-2-2zM19 3h-14c-1.103 0-2 .897-2 2s.897 2 2 2h14c1.103 0 2-.897 2-2s-.897-2-2-2z"/></svg>;
+
 const IconWishList = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" id="wishList"  version="1.0" width="38.5" height="29.5" viewBox="0 0 134 118">
       <g>
         <title>Layer 1</title>
         <g id="heart"  fill="black" stroke="black" >
-          <path id="path3659" fill="red"  stroke="black" strokeWidth="3" d="M66.9874614091178,17.99694971452614 C156.82820487173205,-42.189505991694794 151.74288146078166,78.9420567116992 66.9874614091178,115.61027456730805 C-17.76795694726953,78.9420567116992 -22.853282150369367,-42.189505991694794 66.9874614091178,17.99694971452614 z"   />
+          <path id="path3659" fill="#d24242"  stroke="black" strokeWidth="3" d="M66.9874614091178,17.99694971452614 C156.82820487173205,-42.189505991694794 151.74288146078166,78.9420567116992 66.9874614091178,115.61027456730805 C-17.76795694726953,78.9420567116992 -22.853282150369367,-42.189505991694794 66.9874614091178,17.99694971452614 z"   />
         </g>
         <path id="circle" fill="white"  stroke="black"  strokeWidth="2" d="M29.961750843340074,53.66120852433412 C29.961750843340074,37.23153603161306 45.74456403059908,23.923501312509035 65.22951858277074,23.923501312509035 C84.71447313494237,23.923501312509035 100.49728632220139,37.23153603161306 100.49728632220139,53.66120852433412 C100.49728632220139,70.09088101705518 84.71447313494237,83.39891573615921 65.22951858277074,83.39891573615921 C45.74456403059908,83.39891573615921 29.961750843340074,70.09088101705518 29.961750843340074,53.66120852433412 z"  />
         <path fill="black"  stroke="black"  strokeWidth="6" d="M65.34810465804094,37.98892538248377 L65.34810465804094,68.04356846221842" id="svg_5"/>
@@ -42,5 +74,33 @@ const IconWishList = () => {
       </g>
     </svg>
   )
+};
+const IconCardByList = ({ size = "25px", style }) => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 512 512" style={style}>
+      <path d="M80 280h256v48H80zM80 184h320v48H80zM80 88h352v48H80z"/><g>
+      <path d="M80 376h288v48H80z"/></g>
+    </svg>
+  )
+};
+const IconCardByImage = ({ size = "24px", style }) => {
+  return (
+    <svg version="1.2" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" width={size} height={size} style={style} viewBox="0 0 24 24">
+      <circle cx="5" cy="19" r="2.5"/><circle cx="5" cy="12" r="2.5"/><circle cx="5" cy="5" r="2.5"/><circle cx="12" cy="19" r="2.5"/>
+      <circle cx="12" cy="12" r="2.5"/><circle cx="12" cy="5" r="2.5"/><circle cx="19" cy="19" r="2.5"/><circle cx="19" cy="12" r="2.5"/><circle cx="19" cy="5" r="2.5"/>
+    </svg>
+  )
+};
+
+const IconResizeSideMenu = ({size, rotate = 0}) => {
+  return (
+    <svg width={size} version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+	 viewBox="0 90 212 310.1">
+	<g transform={`rotate(${rotate}, 111, 245)`}>
+		<path d="M203.8,229.9L33.3,94.8C19,84.4,0,91.7,0,111.4v269.2c0,20.1,21.3,24.6,33.3,15.6l170.5-135.1
+			C214.1,252.5,216.2,239.3,203.8,229.9z M41.6,338V153L159,245.5L41.6,338z"/>
+	</g>
+</svg>
+  )
 }
-export { IconPlus, IconMinus, IconUser, Logo, IconWishList}
+export { IconPlus, IconMinus, IconUser, Logo, IconWishList, IconCardByList, IconCardByImage, IconMenu, IconResizeSideMenu, IconDetails}

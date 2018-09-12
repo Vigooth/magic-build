@@ -1,26 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import _ from 'lodash';
 import CardDetails from "./CardDetails";
 import { IconMinus, IconPlus, IconWishList } from "./icons/icons";
+import {deckTemplate} from './templates/back/Deck'
+import {defaultTemplate} from './templates/back/Default'
 
-export const CardBack = ({ updateMyCards, set, cardOwned, card }) => {
-  return (<div className="back">
-    <div className="top">
-      <div>
-        <IconWishList/>
+export class CardBack extends Component {
+  state = {
+    numberOfCardOwned: this.props.cardOwned.number || 0
+  };
+
+
+
+  templates = () => {
+    const {template} = this.props;
+     switch (template) {
+      case 'deck': return deckTemplate(this.props, this.state.numberOfCardOwned);
+       default: return defaultTemplate(this.props)
+
+    }
+  }
+  render() {
+    const template = this.templates();
+    return (
+      <div className="back">
+        <div className="top">
+          {template.top()}
+        </div>
+        <div className="middle">
+          {template.middle()}
+        </div>
+        <div className="bottom">
+          {template.bottom()}
+
+        </div>
       </div>
-    </div>
-    <div className="middle">
-      <CardDetails buttonLabel="Details" set={set} card={card}/>
-    </div>
-    <div className="bottom">
-      <div className="copiesNumber">
-        <span className="minus" onClick={() => updateMyCards("DEC", card.multiverseid, set.code, cardOwned.number)}><IconMinus size="25px"
-                                                                                              color="#e0c6d0"/></span>
-        <span>{cardOwned.number || 0}</span>
-        <span className="plus" onClick={() => updateMyCards("INC", card.multiverseid, set.code, cardOwned.number)}><IconPlus size="25px"
-                                                                                            color="#e0c6d0"/></span>
-      </div>
-    </div>
-  </div>)
-};
+    )
+  }
+}
+

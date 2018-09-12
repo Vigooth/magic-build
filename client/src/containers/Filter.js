@@ -9,17 +9,19 @@ const GetFilter = ({ defaultValue, type, setVisibilityFilter }) => {
   const props = {setVisibilityFilter, defaultValue};
   switch (type) {
     case 'colors': return <FilterColorsBtn defaultValue={defaultValue} setVisibilityFilter={setVisibilityFilter}/>;
-    case 'own'   : return <FilterOwnBtn {...props} />;
+    case 'own'   : return  <FilterOwnBtn {...props} /> ;
     case 'search': return <FilterSearchBtn {...props} />;
     default: return null
   }
 };
 
-const Filter = ({ defaultValue, type, setVisibilityFilter }) => {
+const Filter = ({ defaultValue, type, setVisibilityFilter, authenticated }) => {
   return (
     <ButtonGroup className={`${type}`}>
-      <GetFilter defaultValue={defaultValue} type={type} setVisibilityFilter={setVisibilityFilter} />
+      <GetFilter defaultValue={defaultValue} type={type} setVisibilityFilter={setVisibilityFilter} authenticated={authenticated} />
     </ButtonGroup>)
 };
-
-export default  connect( null, { setVisibilityFilter })(Filter);
+const mapStateToProps = state => (
+  { authenticated: state.auth.authenticated}
+);
+export default  connect( mapStateToProps, { setVisibilityFilter })(Filter);

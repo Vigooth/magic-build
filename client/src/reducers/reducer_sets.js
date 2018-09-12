@@ -1,9 +1,10 @@
 import { FETCH_SETS, FETCH_MYSETS } from '../actions/types';
 import _ from 'lodash';
 import cards from "../containers/cards";
+import { handleException } from "./reducer_set";
 
 export default function(state = {}, action) {
-  switch(action.type){
+  switch(action.type) {
     case FETCH_SETS:
       let cardsNumber = 0;
       return _.map(action.payload.data, set => {
@@ -11,11 +12,14 @@ export default function(state = {}, action) {
         return {..._.omit(set, 'cards'), cardsNumber}
       });
     case FETCH_MYSETS:
-      const mySets = _.keys(action.payload.owned.byMultiverseid);
-      let setsFiltred = _.pick(action.payload.sets.data, mySets);
+      let owned = action.payload.owned ===undefined ?  {byMultiverseid:{}, multiverseids: [] } : action.payload.owned;
+
+      const mySets = _.keys(owned.byMultiverseid);
+      let setsFiltred = _.pick(action.payload.sets, mySets);
       _.each(mySets, set => {
+        handleException(setsFiltred[set]);
         const cards = _.filter(setsFiltred[set].cards, card =>
-          action.payload.owned.byMultiverseid[set][card.multiverseid]&& (action.payload.owned.byMultiverseid[set][card.multiverseid].number>0))
+          owned.byMultiverseid[set][card.multiverseid] && (owned.byMultiverseid[set][card.multiverseid].number>0));
         setsFiltred = {...setsFiltred, [set]:{...setsFiltred[set], cards}}
       });
       return {...setsFiltred}

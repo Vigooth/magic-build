@@ -1,12 +1,11 @@
 //$backgroundColor : #9e6d48;
-$backgroundColor : #c4bdb861;
+$backgroundColor : #e8e7e6;
 $majorGrey : #464a4c;
 $majorBtn : #39a3d9;
-$secondBtn : #464a4cb8;
+$secondBtn : #74787a;
 $footerColor : #2a262c;
 $cardWidth :  244px;
 $cardHeight: 340px ;
-
 .menu-overlay.hide {
   visibility: hidden;
   .menu-overlay-container {
@@ -18,9 +17,9 @@ $cardHeight: 340px ;
     }
   }
 }
-
-
-
+#iconMenu {
+  cursor: pointer;
+}
 .menu-overlay {
   position: fixed;
   z-index: 1000;
@@ -41,7 +40,10 @@ $cardHeight: 340px ;
       background-color: #fcfeff;
       height: 100vh;
       .header {
-        padding: 8px 16px 16px 16px;
+        padding: .5rem 1rem;
+        #iconMenu {
+          cursor: pointer;
+        }
         #logo {
           cursor: pointer;
         }
@@ -62,9 +64,12 @@ $cardHeight: 340px ;
   .item {
     display: flex;
     width:100%;
-    height:50px;
+    height:40px;
     align-items: center;
     padding-left: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     .icon {
       margin-right:22px;
     }
@@ -85,6 +90,16 @@ $cardHeight: 340px ;
 
   }
 }
+.decks {
+  .menu-items {
+    .item {
+      padding-left: 5px;
+    }
+    .item:hover {
+      background-color: #9e9694;
+    }
+  }
+}
 body {
   background-color: $backgroundColor;
 }
@@ -96,10 +111,18 @@ body {
   display: flex;
   flex-direction: column;
 }
+header.navbar
+{
+  z-index:3;position: fixed; width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 header {
   background-color: $majorGrey;
   border-bottom: 2px black solid;
   box-shadow: -1px 1px 2px black;
+  height:45px;
   .title:hover {
     color: rgba(252, 254, 255, 0.76);
   }
@@ -114,8 +137,10 @@ header {
   .header-title {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-basis: 26%;
   }
+
   .header-user {
     display: flex;
     justify-content:flex-end;
@@ -157,15 +182,20 @@ header {
   flex-wrap: wrap;
   justify-content: center;
 }
+.page .container {
+  margin-top: 40px;
+}
 .page.container {
   flex-grow: 1;
 }
 .page {
   flex-grow: 1;
+  margin-top: 55px;
 }
 footer {
+  z-index: 3;
   background-color: $footerColor;
-  margin-top: 50px;
+  margin-top: 0;
   border-top: 2px black solid;
   box-shadow: -1px 1px 2px black;
 
@@ -173,7 +203,7 @@ footer {
     display: flex;
     justify-content: center;
     align-content: center;
-    p {color: #f5deb338; margin:0}
+    p {color: antiquewhite; margin:0}
   }
 
 }
@@ -207,7 +237,7 @@ footer {
 }
 
 .header-title .title {
-  color: #eceeefb8;
+  color: #ccd0d2;
   font: 34px  bold;
   text-shadow: 3px 2px 15px black;
 
@@ -215,7 +245,6 @@ footer {
 }
 .nav-item {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;;
 }
@@ -244,10 +273,22 @@ footer {
     width: 100px;
   }
   .active {height:45px}
+  .ReactTable {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    background-color: whitesmoke;
+    .plus {cursor: pointer}
+    .minus {cursor: pointer}
+  }
 }
+
 .LimitVisibleCard {  display: flex;
   flex-wrap: wrap;
-  justify-content: center;}
+  justify-content: center;
+  width: 100%;
+}
+
 .cardsContent {
   display: flex;
   flex-wrap: wrap;
@@ -255,11 +296,42 @@ footer {
   border: 2px black solid;
   background-color: $majorGrey;
   padding: 5px;
-  .image-preload {
-    border : 5px black solid;
-    width:100%;
-    height:100%
+  .small {
+    width: calc( 0.5 * #{$cardWidth} );
+    height: calc( 0.5 * #{$cardHeight} );
+    .image-preload {
+      border : 5px black solid;
+      width:100%;
+      height:100%
+    }
+    .copiesNumber span{
+      font: small-caps bold 22px sans-serif;
+    }
+  }  .medium {
+    width: calc( 1 * #{$cardWidth} );
+    height: calc( 1 * #{$cardHeight} );
+    .image-preload {
+      border : 5px black solid;
+      width:100%;
+      height:100%
+    }
+    .copiesNumber span{
+      font: small-caps bold 26px sans-serif;
+    }
   }
+  .large {
+    width: calc( 1.5 * #{$cardWidth} );
+    height: calc( 1.5 * #{$cardHeight} );
+    .image-preload {
+      border : 5px black solid;
+      width:100%;
+      height:100%
+    }
+    .copiesNumber span{
+      font: small-caps bold 39px sans-serif;
+    }
+  }
+
   .cardBox.owned{
     background-color: #9e6d48;
     border-radius: 20%;
@@ -267,8 +339,6 @@ footer {
   }
   .cardBox {
     position: relative;
-    width: $cardWidth;
-    height: $cardHeight;
     margin: 9px;
     background-color: #9e4848d6;
     border-radius: 14%;
@@ -317,7 +387,6 @@ footer {
       opacity: 0;
       visibility: hidden;
       position: absolute;
-
       display: flex;
       top: 0;
       flex-direction: column;
@@ -327,7 +396,6 @@ footer {
       .copiesNumber {
         color: #ec971f;
       }
-
     }
     .top {
       flex-basis : 18%;
@@ -343,6 +411,8 @@ footer {
       justify-content: center;
       display: inline-flex;
       flex-basis : 18%;
+      user-select: none;
+      -moz-user-select: none;
     }
     .copiesNumber {
       display: inline-flex;
@@ -350,7 +420,6 @@ footer {
       text-align: center;
     }
     .copiesNumber span{
-      font: small-caps bold 26px sans-serif;
       text-shadow: 1px 1px 0 #000000;
       z-index: 2;
     }
@@ -360,6 +429,7 @@ footer {
 .setsBox {
   font-size: 28px;
   display: flex;
+  width: 100%;
   align-items: center;
   flex-wrap: wrap;
   flex-direction: column;
@@ -367,43 +437,44 @@ footer {
   border: 2px black solid;
   background-color: $majorGrey;
   span {
+    display: flex;
     width: 100%;
     border: 2px black solid;
-    color: #eceeefb8;
+    color: #ccd0d2;
     margin: 5px;
     background-color: #353a3c;
-
+    a {
+      color: #ccd0d2;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      padding: 2px;
+      justify-content: space-between;
+      text-decoration: none;
+    }
+    a:hover {
+      cursor: pointer;
+      border: 3px black solid;
+      color: #ec971f;
+      transition: .5s ease;
+    }
   }
-  span a{
-    color: #eceeefb8;
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
-
+  .spinner {
+    all: unset;
   }
-  span a:hover {
-    border: 3px black solid;
-    color: #ec971f;
-    transition: .5s ease;
 
-  }
 }
-
-
-
-
-
-
-
 
 .cardBox:hover img {
   opacity: 0.8;
+}
+.cardBox:hover .cardActions .front {
+  opacity: 0;
 }
 
 .cardBox:hover .cardActions .back {
   opacity: 1;
   visibility: visible;
-
 }
 
 .text {
@@ -415,9 +486,9 @@ footer {
 .filtersGroup {
   display: flex;
   width: 100%;
-  flex-wrap: wrap;
+  height:45px;
 }
-.fixed{
+.fixed {
   position:fixed;
   top: 0;
   left: 0;
@@ -428,11 +499,10 @@ footer {
   .colors {}
   .search{
     flex-grow: 2;
-    min-width: 150px;
+    min-width: 122px
   }
   .own {
     flex-grow: 1;
-
   }
 }
 .searchCardBarBox {
@@ -451,7 +521,7 @@ footer {
       flex-direction: column;
       height: 100%;
       flex-wrap: wrap;
-      justify-content: space-evenly;
+      justify-content: space-around;
       align-items: center;
       svg {
         margin: 1px;
@@ -464,7 +534,7 @@ footer {
     height: 100%;
   }
   input {
-    padding-left: 50px;
+    padding-left: 40px;
   }
 }
 
@@ -472,29 +542,338 @@ footer {
   border: 2px black solid;
   background-color: $majorGrey;
 }
-.btn-filterColor:hover,.btn-filterColor.active:hover  {
-  background-color: #453d4c;
+
+.btn-group {
+  button {
+    height: 100%!important;
+  }
+}
+.btn-cardsSize {
+  border: 2px black solid;
+  background-color: #c7c7c7;
   cursor: pointer;
 }
+.btn-filterColor:hover,.btn-filterColor.active:hover  {
+  background-color: #453d4c;
+transform: scale(1.1);
+  cursor: pointer;
+}
+
 .btn-filterColor.active {
   background-color: #645a6b;
-
 }
+
 .loadMore {
   cursor:pointer;
   width: 100%;
   border: 2px black solid;
   background-color: #464a4c;
-
 }
-.spinner {
+.btn:hover {
+  cursor:pointer;
+}
+.modal-header {
   display: flex;
-  width: 100%;
+  flex-direction: column;
   justify-content: center;
+  h4 {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+  h4::before,
+  h4::after {
+    content: "";
+    border: solid gray;
+    border-width: .05em 0;
+    height: .1em;
+    margin: .2em;
+    flex: 1;
+  }
 }
-#heart {
-  fill: red;
+
+  .decks {
+    .cards {
+      .card img, button {
+        display: none
+      }
+      .card:hover button {
+        display: block;
+
+      }
+      .card span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+      }
+      .card span:hover img {
+          position: fixed;
+          display: block;
+          height: 360px;
+          right: calc(60% - 256px);
+          top:calc(50% - 180px);
+          z-index: 3;
+
+      }
+      .card {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding:2px;
+        border: 1px #383636 solid;
+        font-weight: 500;
+      }
+    }
+  }
+  .hand img{
+    transition: all .2s ease-in;
+  }
+  .hand:hover{
+    z-index: 999!important;
+  img{
+    transform: scale(1.1);
+
+    }
+  }
+  /*.spinner {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }*/
+
+  #heart {
+    fill: red;
+  }
+
+  #wishList:hover {
+    cursor: pointer;
+  }
+  .container{
+    flex-basis: 100%;
+  }
+  @media (min-width: 768px) {
+    .container {flex-basis: 80%};
+    .cards-from-deck div {
+      padding: 10px;
+    }
+  }
+  @media (max-width: 768px) {
+    .container {flex-basis: 100%};
+    .cardsContent .cardBox {
+      position: relative;
+      width: 180px;
+      height: auto;
+      margin: 0; };
+    .filtersGroup {
+      height: 38px;
+    }
+    .set .filter-order {
+      justify-content: center;
+    }
+    .filtersGroup .own {
+      flex-grow: 0;
+    }
+    .btn-filterColor svg{
+      width: 15px;
+    }
+    .btn-filterColor {
+      padding: 0.5em ;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding:0;
+      margin:0;
+      flex-basis: 100%;
+      .setsBox {
+        font-size: 28px;
+        padding: 0;
+        .setByYear {
+          a{justify-content: flex-start;}
+        }
+      }
+    }
+    .cardsContent .cardBox {
+      position: relative;
+      width: 152px;
+      height: auto;
+      margin: 0; }
+  }
+  .scrollbar:hover {
+    overflow-y: scroll;
+  }
+  .scrollbar
+  {
+    overflow-y: scroll;
+    float: left;
+    width: 65px;
+    height: 60vh;
+    top:25%;
+  }
+
+  .force-overflow
+  {
+    min-height: 450px;
+  }
+  #style-15::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+  }
+
+  #style-15::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: #F5F5F5;
+  }
+
+  #style-15::-webkit-scrollbar-thumb
+  {
+    border-radius: 10px;
+    background-color: #FFF;
+    background-image: -webkit-gradient(linear,
+            40% 0%,
+            75% 84%,
+            from(#4D9C41),
+            to(#19911D),
+            color-stop(.6,#54DE5D))
+  }
+
+  /*
+   *  STYLE 16
+   */
+
+  .style-16::-webkit-scrollbar-track
+  {
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);*/
+    background-color: inherit;
+    border-radius: 10px;
+  }
+
+  .style-16::-webkit-scrollbar
+  {
+    width: 4px;
+    background-color: #e8e7e6;
+  }
+
+  .style-16::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #828d97;
+  }
+  .menu-deck {
+    .header {
+      display: flex;
+      justify-content: center;
+    }
+    input[type=text] {
+      width: 10px;
+      box-sizing: border-box;
+      border: 0;
+      font-size: 16px;
+      color:#cccccc;
+      background-color: #464a4c;
+      background-size: 20px 20px;
+      background-image: url('/images/add_deck.png');
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      padding: 9px 15px 8px 27px;
+      outline: none!important;
+      -webkit-transition: width 0.4s ease-in-out;
+      transition: width 0.4s ease-in-out;
+    }
+
+    input[type=text]:focus {
+      width: 95%;
+      border-bottom: 2px solid #cccccc;
+      background-position: 95% 10px;
+    }
+  }
+.cards-from-deck {
+  position: fixed;
+  width: 35%;
+  .dropdown-menu {
+    padding-top: 0;
+    position: absolute;
+    will-change: transform;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: $backgroundColor;
+    transform: translate3d(0px, 36px, 0px)!important;
+  }
+  .deck-header {
+    display: flex;
+    align-items: center;
+    button {
+      border: inherit;
+      background-color: inherit;
+    }
+  }
 }
-#wishList:hover {
-  cursor: po;
+.newDeck {
+  display: flex;
+  justify-content: flex-start;
+
+  input[type=text] {
+    width: 10px;
+    box-sizing: border-box;
+    border: 0;
+    font-size: 16px;
+    color: #f98731;
+    background-color: $backgroundColor;
+    background-size: 20px 20px;
+    background-image: url('/images/add_deck.png');
+    background-position: 5px 5px;
+    background-repeat: no-repeat;
+    padding: 9px 15px 8px 27px;
+    outline: none!important;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+
+  input[type=text]:focus {
+    width: 95%;
+    border-bottom: 2px solid #cccccc;
+    background-position: 95% 10px;
+  }
 }
+.menu-sets {
+  .header {
+    display: flex;
+    justify-content: center;
+  }
+  input[type=text] {
+    width: 10px;
+    box-sizing: border-box;
+    border: 0;
+    font-size: 16px;
+    color:#cccccc;
+    background-color: #464a4c;
+    background-size: 20px 20px;
+    background-image: url('/images/search.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 9px 15px 8px 27px;
+    outline: none!important;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+
+  input[type=text]:focus {
+    width: 100%;
+    border-bottom: 2px solid #cccccc;
+    background-position: 95% 10px;
+  }
+}
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+

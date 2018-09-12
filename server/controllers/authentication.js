@@ -8,7 +8,6 @@ function tokenForUser(user) {
 exports.signin = function(req, res, next) {
   // User has already had they email and password auth'd
   // We just need to give them a token
-
   const { user : {_id, email }} = req;
   res.send({
     token: tokenForUser(req.user),
@@ -20,14 +19,15 @@ exports.token = function(req, res, next) {
   return User.findOne({_id}, function(err, result){res.json({ userId: result })});
 };
 exports.signup = function(req, res, next) {
-
   const { body: { email, password } } = req;
 
   // See if a user with the given email exists
   User.findOne({ email }, function(err, existingUser) {
-    if( !email || !password ) res.status(422).send({error: 'You must provide email and password'});
+
+    if( !email || !password ) res.status(422).send({error: 'Hmm, your email or password is incorrect. Please try again.'});
     // If a user with email does exist, return an error
     if(existingUser) {
+
       return res.status(422).send({error: 'Email is in use'});
     }
 

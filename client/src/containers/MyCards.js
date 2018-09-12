@@ -14,13 +14,28 @@ class MyCards extends Component {
     visibilityFilter: PropTypes.object.isRequired,
   };
   componentWillMount() {
+    this.trickyInit = 1;
     this.props.fetchMyCards();
-    this.props.fetchMySets();
+  }
+  trickyFetchingMySets(nextProps) {
+    if (this.props.cards.owned === undefined) {
+      nextProps.fetchMySets()
+    } else {
+      if (
+        _.size(nextProps.cards.owned.multiverseids)!==_.size(this.props.cards.owned.multiverseids)
+        || this.trickyInit === 1) {
+        this.trickyInit = 2;
+        nextProps.fetchMySets()
+      }
+    }
+    }
+  componentWillReceiveProps(props) {
+    this.trickyFetchingMySets(props);
   }
   getCards = ( set, myCardsFromThisSet ) => {
     return (
       _.map(set.visibleCards, (multiverseid) => {
-        return <Card key={multiverseid} card={set.cards[multiverseid]} set={set} myCard={myCardsFromThisSet[multiverseid]} multiverseid={multiverseid} />
+        return <Card key={multiverseid} card={set.cards[multiverseid]} set={set} myCard={myCardsFromThisSet[multiverseid]} multiverseid={multiverseid} withActions  />
       })
     )};
 
@@ -30,25 +45,20 @@ class MyCards extends Component {
       _.map(sets, set => this.props.cards.owned.byMultiverseid[set.code] && _.size(set.cards) ?
         <div className="cardsBox" key={set.code}>
           <h1 className="titleContainer">{set.name}</h1>
-          <div className="cardsContent"><LazyComponent classname="cardBox">{this.getCards(set, this.props.cards.owned.byMultiverseid[set.code] )}</LazyComponent></div>
+          <div className="cardsContent"><LazyComponent lazyKey={set.code} autoLoading={false} classname={`cardBox`}>{this.getCards(set, this.props.cards.owned.byMultiverseid[set.code] )}</LazyComponent></div>
         </div> : null
       )
     )
   };
 
-  isLoading() {
+  isLoading = () => {
     const { sets, cards } = this.props;
     return _.isEmpty(sets)||_.isEmpty(cards)||(_.isArray(sets))
-  }
+  };
 
-  doesUserHaveCards() {
-    return _.flow(this.getCodeKeys, this.checkCardsOwnedInSet, this.reduceIfUserHasCards)();
-  }
-  reduceIfUserHasCards = (booleanList) => _.reduce(booleanList, (current, next) => {return current||next });
-
-  checkCardsOwnedInSet = (codeKeys) => _.map(codeKeys, code => this.props.sets[code].cards.length);
-
-  getCodeKeys = () => _.keys(this.props.cards.owned.byMultiverseid);
+  doesUserHaveCards = () => {
+    return !_.isEmpty(this.props.cards.owned.multiverseids);
+  };
 
   render() {
     if (this.isLoading()) return <Spinner />;

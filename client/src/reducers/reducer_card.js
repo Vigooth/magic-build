@@ -1,0 +1,14 @@
+import {AUTH_ERROR, AUTH_USER, UNAUTH_USER} from "../actions/types";
+
+export default function(state = {}, action) {
+
+  switch(action.type) {
+    case 'NEW_CARD':
+      return { ...state, authenticated: true, ...action.payload };
+    case UNAUTH_USER:
+      return { ...state, authenticated: false }
+    case AUTH_ERROR:
+      return { ...state, error: action.payload }
+  }
+  return state;
+}

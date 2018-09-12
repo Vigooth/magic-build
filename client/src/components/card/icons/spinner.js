@@ -1,11 +1,11 @@
 import React from 'react';
 
-export const Spinner = () => <div className="spinner">
+export const Spinner = ( props) => {return <span className="spinner" style={props.style}>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 204 198"
-    height="50"
-    width="50"
+    height={props.size || 50}
+    width={props.size || 50}
     id="svg3713"
     version="1.1">
 
@@ -50,4 +50,4 @@ export const Spinner = () => <div className="spinner">
       display="inline"
       id="layer1" />
   </svg>
-</div>;
+</span>};

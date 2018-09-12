@@ -9,9 +9,9 @@ const FilterOwnBtn = ({ onOwnChange, defaultValue, setVisibilityFilter }) =>  (
   </Input>
 );
 
-const filterByOwn = (cards, name, owned) => {
-  if (name==="own")     { return _.filter( cards, card => _.indexOf( owned.multiverseids, card.multiverseid)!==-1 )}
-  if (name==="missing") { return _.filter( cards, card => _.indexOf( owned.multiverseids, card.multiverseid)===-1 )}
+const filterByOwn = (cards, name, multiverseids) => {
+  if (name==="own")     { return _.filter( cards, card => _.indexOf( multiverseids, card.multiverseid)!==-1 )}
+  if (name==="missing") { return _.filter( cards, card => _.indexOf( multiverseids, card.multiverseid)===-1 )}
   return cards
 };
 

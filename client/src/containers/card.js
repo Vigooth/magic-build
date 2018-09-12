@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { cardScyfallImage } from "../components/constantes";
-import { fetchMyCards, updateMyCards } from "../actions/cards";
+import { startLoading, updateMyCards } from "../actions/cards";
+import { insertCardFromDeck } from "../actions/deck";
 import { CardActions } from "../components/card/CardActions";
 
 class Card extends Component {
@@ -24,24 +25,35 @@ class Card extends Component {
 
   render() {
     const
-      preload                                                 = this.state.imageLoaded ? '' : 'image-preload',
+      imgPreload                                              = this.state.imageLoaded ? '' : 'image-preload',
       visibility                                              = this.state.imageLoaded ? 'visible' : 'hidden',
-      { set, updateMyCards } = this.props,
-      card                                                    = this.props.card,
+      { set, updateMyCards, withActions, card, startLoading } = this.props,
       addCssIfCardIsOwned                                     = this.props.myCard.number ? 'owned' : '';
+
     return (
-      <div className={`cardBox ${preload}`}>
+      <div className={`cardBox ${imgPreload} ${this.props.style.cardsSize}`} >
         <img
-          className={`placeholder ${addCssIfCardIsOwned} ${preload}`}
-          style={{visibility}} onLoad={this.onImageLoaded}
+          className={`placeholder ${addCssIfCardIsOwned} ${imgPreload}`}
+
+          style={{visibility }} onLoad={this.onImageLoaded}
           src={ cardScyfallImage(card.number, set.code, 'en', 'normal' )} />
-        <CardActions
-          updateMyCards={updateMyCards}
-          set={set}
-          card={card}
-          cardOwned={this.props.myCard || {}}/>
+        {withActions ?
+          <CardActions
+            updateMyCards={updateMyCards}
+            set={set}
+            card={card}
+            template={this.props.template}
+            loading={this.props.loading}
+            insertCardFromDeck={this.props.insertCardFromDeck}
+            startLoading={startLoading}
+            cardOwned={this.props.myCard}/> :
+          null}
       </div>)
   }
 }
-
-export default connect(null, { fetchMyCards, updateMyCards })(Card);
+const mapStateToProps = state => (
+  { style: state.style,
+    loading: state.loading.card
+  }
+);
+export default connect(mapStateToProps, { updateMyCards, startLoading, insertCardFromDeck })(Card);

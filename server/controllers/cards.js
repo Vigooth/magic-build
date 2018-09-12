@@ -6,6 +6,7 @@ exports.mycard = function(req, res, next) {
   const
     _id = jwt.decode(req.body.token, config.secret).sub,
     { code } = req.body;
+  console.log()
   // Find if user exist
   Card.findOne({ userId: _id }, function(err, result) {
     console.log(result)

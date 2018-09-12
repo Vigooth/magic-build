@@ -7,7 +7,8 @@ import { filterSet } from "../actions/index";
 import { getPosition } from "../utils";
 import { SetControls } from "../components/set/SetControls";
 import { Spinner } from "../components/card/icons/spinner";
-
+import { zoomInCards } from "../components/symbols";
+import Zoom from "../components/card/icons/Zoom"
 class Set extends Component {
   static propTypes = {
     set: PropTypes.object.isRequired,
@@ -34,6 +35,7 @@ class Set extends Component {
     let
       x = document.getElementsByClassName("filtersGroup")[0],
       y = document.getElementsByClassName("filterScroll")[0];
+    if (x===undefined) return;
     if (getPosition(x).y < 0) {
       x.classList.add("fixed");
       y.classList.add("active")
@@ -49,14 +51,15 @@ class Set extends Component {
   };
 
   render() {
-    const { set , visibilityFilter, match : {params } } = this.props;
-    if (this.isLoading()) return <Spinner />;
+    const { set , visibilityFilter, match : { params } } = this.props;
     return (
-      <div className="set">
-        <h1 className="titleContainer">{ set[params.set].name }</h1>
-        <SetControls visibilityFilter = {visibilityFilter}/>
-        <Cards set={set[params.set]} />
-      </div>
+      this.isLoading() ?
+        <Spinner/> :
+        <div className="set">
+          <h1 className="titleContainer">{ set[params.set].name }</h1>
+          <SetControls visibilityFilter = {visibilityFilter}/>
+          <Cards set={set[params.set]} />
+        </div>
     )
   }
 }

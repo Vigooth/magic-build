@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input } from 'reactstrap';
 import { FlagFrance, FlagUnitedKingdom } from "../../flags";
-import { reduceLogicalOperator } from "../../../utils";
+import { isIncludes, reduceLogicalOperator } from "../../../utils";
 
 const FilterSearchBtn = ({ defaultValue, setVisibilityFilter }) => (
   <div className="searchCardBarBox">
@@ -14,11 +14,13 @@ const FilterSearchBtn = ({ defaultValue, setVisibilityFilter }) => (
     <Input className="searchCardBar" defaultValue={defaultValue} placeholder={"Search a card"} onChange ={(e) => {setVisibilityFilter({'search':e.target.value})}} />
   </div>);
 
+
 const mapOfIsNameFoundInForeignNames = (languages, keyByForeignNames, name) => {
   return _.map( languages, language => {
-    return (keyByForeignNames[language]) ? _.includes(keyByForeignNames[language].name, name): false;
+    return (keyByForeignNames[language]) ? isIncludes(keyByForeignNames[language].name, name) : false;
   });
 };
+
 
 const isNameFoundInForgeignNames = (array = [], name, languages = ['French']) => {
   if (array.length === 0) return "";
@@ -27,7 +29,7 @@ const isNameFoundInForgeignNames = (array = [], name, languages = ['French']) =>
 };
 
 const filterBySearch = (cards, name) => {
-  return _.filter( cards, card => _.includes(card.name, name) || isNameFoundInForgeignNames(card.foreignNames, name) )
+  return _.filter( cards, card => isIncludes((card.name), _.lowerCase(name)) || isNameFoundInForgeignNames(card.foreignNames, name) )
 };
 
 export { FilterSearchBtn, filterBySearch }

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
-import { Route } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom'
 import  { browserHistory} from 'react-router';
 import Home from '../../containers/Home'
 const UnauthorizedRoute = () => browserHistory.push('/feature');
@@ -11,7 +11,7 @@ const UnauthorizedRoute = () => browserHistory.push('/feature');
     <Route
       path={path}
       exact={exact}
-      render={ props => authenticated ? <Home /> : (React.createElement(component, {
+      render={ props => authenticated ? <Redirect to={'/home'} /> : (React.createElement(component, {
         ...props, ...rest, authenticated,
       }))
       }/>
